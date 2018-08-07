@@ -1,11 +1,35 @@
-Optimize_Parameters.py
- - runs optimization code for a list of specified methods and prints results to two folders
- - RMSE: C:\Users\Alva\PycharmProjects\HIIS\result\optimize\RMSE
- - calibrated parameters: C:\Users\Alva\PycharmProjects\HIIS\result\optimize\calibrated
+# APSim_Model.py
 
-Parameter_Sweep.py
- - gets the best combination of parameter and prints it to C:\Users\Alva\PycharmProjects\HIIS\result\optimize\calibrated
+**The Coupled Innate Immune System - Alkaline Phosphatase Simulator Model** \
+contact: avpresbitero@corp.ifmo.ru \
+git: https://github.com/avpresbitero/HIIS
 
-APSim_Model.py
- - extracts best parameters from the printed file, plots all key player concentrations to C:\Users\Alva\PycharmProjects\HIIS\result\plots
 
+This code aims to simulate the innate immune response coupled with the induction mechanism of alkaline phosphatase.
+
+## Prerequisites
+
+1. Python 3.5 or higher
+2. Python libraries used:
+    - numpy
+    - scipy
+    - csv
+    - matplotlib
+    - seaborn
+    - pandas
+
+## Instructions
+
+1. Download *APSim_Model.py*
+2. On the same directory, create the **data** folder. This is where you will put the **five** data files needed to run the code:
+
+##### To Run:
+```
+ python APSim_Model.py
+```
+
+##### Output:
+```
+result\bIAP.png
+result\placebo.png
+```
