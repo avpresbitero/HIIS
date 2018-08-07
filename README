@@ -1,0 +1,11 @@
+Optimize_Parameters.py
+ - runs optimization code for a list of specified methods and prints results to two folders
+ - RMSE: C:\Users\Alva\PycharmProjects\HIIS\result\optimize\RMSE
+ - calibrated parameters: C:\Users\Alva\PycharmProjects\HIIS\result\optimize\calibrated
+
+Parameter_Sweep.py
+ - gets the best combination of parameter and prints it to C:\Users\Alva\PycharmProjects\HIIS\result\optimize\calibrated
+
+APSim_Model.py
+ - extracts best parameters from the printed file, plots all key player concentrations to C:\Users\Alva\PycharmProjects\HIIS\result\plots
+

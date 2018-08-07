@@ -1,0 +1,234 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from collections import OrderedDict
+
+import Parameters as par
+import APPIREDII_Blood_Params_Parser as dp
+import APPIREDII_Cytokines_Parser as cyto
+import APSim_Model as innate
+
+
+def get_header():
+    header = ['N_R', 'AP_Eblood', 'AP_Etissue', 'AP_Eliver', 'AP_Sblood', 'AP_Stissue', 'ITMblood', 'ITMtissue', 'M_R',
+              'M_A', 'CH', 'N_A', 'ND_A', 'ACH', 'ND_N']
+    header = [name.lower() for name in header]
+    return header
+
+
+def get_files():
+    files = {
+        'cytokine_file': par.cyto_fle,
+        'sample_file': par.sample_fle,
+        'treatment_file': par.trt_fle,
+        'ap_german_file': par.german_hospital_file,
+        'ap_dutch_file': par.dutch_hospital_file
+    }
+    return files
+
+
+def get_original_params():
+    params = OrderedDict()
+    params['beta_CHMA'] = 7.8e-4
+    params['beta_CHNA'] = 4.8e-2
+    params['theta_ACH'] = 1e-10
+    params['beta_MANDA'] = 9e1
+    params['lamb_ITMNDN'] = 1.e-6
+    params['alpha_ITMNDN'] = 1e3
+    params['Pmax_APE'] = 0.002
+    params['Pmin_APE'] = 0.0002
+    params['rdistress'] = 3e6
+    params['w_gauss_min'] = 8e7
+    params['rinduce_peak'] = 21.0
+    params['rinduce'] = 0.05
+    params['r_AP'] = 0.08
+    params['r_ITM'] = 0.5
+    params['r_ITMpeak'] = 5 * 10 ** 12
+    params['r_NDN'] = 0.008
+    params['lamb_MANDN'] = 5e-6
+    params['lamb_MANDA'] = 3e-5
+    params['mu_NDA'] = 2.5e1
+    params['Keq_CH'] = 2e4
+    params['r_Nhomeo'] = 1e-4
+    params['Pmax_NR'] = 6e-3
+    return params
+
+
+def get_cyto_data(files):
+    df_cyto, cyto_dic = cyto.get_median(ct_fle=files['cytokine_file'],
+                                        smpl_fle=files['sample_file'],
+                                        trt_fle=files['treatment_file'],
+                                        colhd='time')
+    return df_cyto
+
+
+def get_ap_data(files):
+    df_AP, df_AP_median = dp.get_data(german_hospital_file=files['ap_german_file'],
+                                      dutch_hospital_file=files['ap_dutch_file'],
+                                      treatment_file=files['treatment_file'],
+                                      parameter_name='AlkFosf',
+                                      restrict=False,
+                                      treatment=None,
+                                      patients=None,
+                                      do_binning=True)
+    df_AP_median['treatment'] = df_AP_median['treatment'].str.lower()
+    return df_AP_median
+
+
+def get_restricted_data(df_data, blood_param, params):
+    """
+    Restricts the data to 36 hours, since the model is only tested for 36 hours only.
+    :param df_data: dataframe of data for cytokines and AP
+    :param blood_param: either 'Cytokine' or 'AP'
+    :return: df_restrict
+            - if 'Cytokine', this dataframe contains medians for all four Cytokines corresponding to a specific
+              treatment (Placebo or bIAP)
+            - if 'AP', this dataframe contains median corresponding to a specific treatment (Placebo or bIAP)
+              time_restrict
+            - list of time (in days) that corresponds to available data
+    :param treatment_type: either 'Placebo' or 'bIAP'
+    """
+
+    df_restrict = df_data.loc[(df_data['time'] >= 0) & (df_data['time'] <= 36.0)]
+    df_restrict = df_restrict[df_restrict['treatment'] == params['treatment_type']]
+    if blood_param == 'cytokine':
+        # sample cytokine to retrieve time list
+        df_restrict_cyto = df_restrict[df_restrict['cytokine'] == 'il10']
+        time_restrict = df_restrict_cyto[df_restrict_cyto['treatment'] == params['treatment_type']]['time']
+    elif blood_param == 'ap':
+        time_restrict = df_restrict[df_restrict['treatment'] == params['treatment_type']]['time']
+    time_restrict = set_to_mins(time_restrict)
+    df_restrict.loc[:, 'time'] *= 60
+    return df_restrict, time_restrict
+
+
+def get_concentrations(df_data, p, w0, header, blood_parameter, params):
+    # print("Getting concentrations for...", blood_parameter)
+    df_data_rstrct, time_rstrct = get_restricted_data(df_data, blood_parameter, params)
+    time, model = innate.solve(p, w0, time_rstrct, params)
+    df_model = pd.DataFrame(model)
+    keys = df_model.columns.values
+    dictionary = dict(zip(keys, header))
+    df_model = df_model.rename(columns=dictionary)
+    df_model['time'] = time
+    return df_model, df_data_rstrct
+
+
+def set_to_mins(hrs_lst):
+    dys_lst = []
+    for h in hrs_lst:
+        dys_lst.append(h*60.0)
+    return dys_lst
+
+
+def get_residuals(params):
+    files = get_files()
+    df_cyto_data = get_cyto_data(files)
+    df_ap_data = get_ap_data(files)
+    header = get_header()
+
+    p0 = get_original_params()
+    p, w, pred_fle = par.get_params(innate, list(p0.values()))
+    w0 = innate.get_init(w, params)
+
+    df_cyto_model, df_cyto_data = get_concentrations(df_data=df_cyto_data,
+                                                     p=p,
+                                                     w0=w0,
+                                                     header=header,
+                                                     blood_parameter='cytokine',
+                                                     params=params)
+    df_ap_model, df_ap_data = get_concentrations(df_data=df_ap_data,
+                                                 p=p,
+                                                 w0=w0,
+                                                 header=header,
+                                                 blood_parameter='ap',
+                                                 params=params)
+
+    df_ch_data = df_cyto_data[df_cyto_data['cytokine'] == 'il6']
+    df_ach_data = df_cyto_data[df_cyto_data['cytokine'] == 'il10']
+
+    df_ch_model = df_cyto_model['ch']
+    df_ch_model = df_ch_model.rename('il6')
+
+    df_ach_model = df_cyto_model['ach']
+    df_ach_model = df_ach_model.rename('il10')
+
+    df_ap_model = np.add(df_ap_model['ap_eblood'], df_ap_model['ap_sblood'])
+    df_ap_model_converted = innate.reverse_AP(df_ap_model, 'endo', 'blood')
+
+    df_ch_data_median = df_ch_data['median']
+    df_ch_data_median = df_ch_data_median.rename('il6')
+
+    df_ach_data_median = df_ach_data['median']
+    df_ach_data_median = df_ach_data_median.rename('il10')
+
+    df_ap_data_median = df_ap_data['median']
+
+    # residuals = {'CH': cyto.reverse_unit(df_ch_data_median).values
+    #                    - cyto.reverse_unit(df_ch_model).values,
+    #              'ACH': cyto.reverse_unit(df_ach_data_median).values
+    #                     - cyto.reverse_unit(df_ach_model).values,
+    #              'AP': df_ap_data_median.values - df_ap_model_converted.values
+    #              }
+
+    residuals = {'CH': df_ch_data_median.values - df_ch_model.values,
+                 'ACH': df_ach_data_median.values - df_ach_model.values,
+                 'AP': df_ap_data_median.values - df_ap_model_converted.values
+                 }
+    return residuals, list(df_cyto_model['time']), list(df_ap_data['time'])
+
+
+def plot(residuals, cyto_time, ap_time):
+    sns.set_style("ticks")
+    sns.set_style({"xtick.direction": "in", "ytick.direction": "in", "axes.linewidth": 2.5})
+
+    lw = 5
+    ls = 20
+    fs = 25
+    lfs = 25
+    ts = 30
+
+    color = '#e41a1c'
+
+    sns.plt.figure(0)
+    sns.plt.plot([t/60. for t in cyto_time], residuals['CH'], linewidth=lw, label="CH Residual", ls='-', color=color)
+    sns.plt.xlabel("Hours After Operation", fontsize=fs)
+    sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+    sns.plt.title("Pro-inflammatory Cytokines", fontsize=ts)
+    sns.plt.hold(True)
+    sns.plt.legend(loc='best', fontsize=lfs)
+    sns.plt.tick_params(labelsize=ls)
+    sns.plt.savefig('result/plots/' + 'CH_Residual.png', format='png', dpi=500, bbox_inches='tight')
+
+    sns.plt.figure(1)
+    sns.plt.plot([t/60. for t in cyto_time], residuals['ACH'], linewidth=lw, label="ACH Residual", ls='-', color=color)
+    sns.plt.xlabel("Hours After Operation", fontsize=fs)
+    sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+    sns.plt.title("Anti-inflammatory Cytokines", fontsize=ts)
+    sns.plt.hold(True)
+    sns.plt.legend(loc='best', fontsize=lfs)
+    sns.plt.tick_params(labelsize=ls)
+    sns.plt.savefig('result/plots/' + 'ACH_Residual.png', format='png', dpi=500, bbox_inches='tight')
+
+    sns.plt.figure(2)
+    sns.plt.plot([t / 60. for t in ap_time], residuals['AP'], linewidth=lw, label="AP Residual", ls='-', color=color)
+    sns.plt.xlabel("Hours After Operation", fontsize=fs)
+    sns.plt.ylabel("concentration $IU/L$", fontsize=fs)
+    sns.plt.title("Alkaline Phosphatase", fontsize=ts)
+    sns.plt.hold(True)
+    sns.plt.legend(loc='best', fontsize=lfs)
+    sns.plt.tick_params(labelsize=ls)
+    sns.plt.savefig('result/plots/' + 'AP_Residual.png', format='png', dpi=500, bbox_inches='tight')
+
+
+if __name__ == '__main__':
+    params = {'h': 'h4',
+              'restrict': False,
+              'case': 6,
+              'treatment_type': 'biap'
+              }
+    residuals, cyto_time, ap_time = get_residuals(params)
+    print ([i/60 for i in ap_time])
+    plot(residuals, cyto_time, ap_time)

@@ -1,0 +1,277 @@
+_day = 1/1140.
+
+phi_MRA = 0.083 * _day
+
+mu_NR = 2.77 * _day
+mu_NA = 2.77 * _day
+mu_NDA = 0.05 * _day
+mu_NDN = 0.05 * _day
+mu_APE = 0.72 * _day
+mu_APSfast = 111.65 * _day
+mu_APSslow = 3.94 * _day
+mu_APS = (mu_APSfast + mu_APSslow)
+mu_D = 0.48 * _day
+mu_G = 5 * _day
+mu_MA = 0.07 * _day
+mu_MR = 0.0033 * _day
+mu_ACH = 2.7648 * _day  # https://www.nature.com/articles/7100023/tables/1
+mu_CH = 2.7648 * _day  # https://www.nature.com/articles/7100023/tables/1
+mu_ITM = 0.005 * _day
+
+lamb_DNDN = 8.4 * _day
+lamb_DG = 8.4 * _day
+lamb_ITMNA = 0.45 * _day
+lamb_APE = 0.00000444916 * _day
+lamb_APS = 0.00000301394 * _day
+lamb_GA = 0.55 * _day
+lamb_ITMMA = 0.8 * _day
+lamb_MANDA = 2.6 * _day
+
+lamb_MANDN = 0.001 * _day
+lamb_ITMD = 0.00745733413 * _day
+lamb_ITMNDN = 0.00000000157 * _day
+lamb_ITMG = 0.013432 * _day
+
+Pmax_MR = 0.1 * _day
+Pmin_MR = 0.01 * _day
+Pmax_NR = 11.4 * _day
+Pmin_NR = 0.0001 * _day
+Pmax_ITM = 100 * _day
+Pmin_ITM = 10 * _day
+
+Gmax = 5.0 * (10 ** 5)
+Qmin_MR = 0 * _day
+Qmax_MR = 0.5 * _day
+Keq_G = 1
+Mmax = 1.5 * (10 ** 2)
+Nmax = 2.5 * (10 ** 3)
+
+ACHmax = 5885266.666666666  # ref:https://link.springer.com/content/pdf/10.1007%2FBF02491513.pdf
+CHmax_tissue = 288071333.33333325  # ref:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1242452/
+
+ITMtissue0 = 3.5e5
+ITMblood0 = 3.5e7
+
+ITMmax = ITMblood0 + ITMtissue0
+supp = 1000.
+APEbmax = 5300.
+APElmax = 5300.
+APEmax = 5300 + 5300
+APSmax = supp
+
+alpha_GNA = 200. * _day
+alpha_ACHMA = 1.5 * _day
+
+alpha_ITMNDN = 6.358*10**(-10) * _day
+alpha_ITMD = 0.00745733413 * _day
+beta_CHMA = 0.8 * _day
+
+beta_CHNA = 1 * _day
+beta_MANDA = 1.5 * _day
+
+theta_ACH = 1
+
+r_ITM = 0.5
+Keq_CH = 1e6
+r_AP = 0.1
+r_NDN = 0.1
+
+rinduce = 0.05
+lamb_MANDN = 0.00002
+mu_NDA = 7
+lamb_MANDA = 0.00002
+
+ITM_source_peak = 4 * 10 ** 6
+ITM_source_width = 5 * 10 ** 2
+
+
+# boundary
+beta_CHMA_bound = (0, 1)
+beta_CHNA_bound = (0, 1)
+theta_ACH_bound = (0, 1)
+beta_MANDA_bound = (0, 10 ** 4)
+lamb_ITMNDN_bound = (0, 1)
+alpha_ITMNDN_bound = (0, 1 * 10 ** 4)
+Pmin_APE_bound = (0, 1)
+Pmax_APE_bound = (0, 1)
+rdistress_bound = (0, 10**9)
+w_gauss_min_bound = (0, 10**9)
+rinduce_peak_bound = (0, 30)
+rinduce_bound = (0, 1)
+r_ITM_bound = (0, 1)
+r_ITMpeak_bound = (0, 10 ** 14)
+r_NDN_bound = (0, 1)
+r_AP_bound = (0, 1)
+lamb_MANDN_bound = (0, 1)
+lamb_MANDA_bound = (0, 1)
+mu_NDA_bound = (0, 10**4)
+Keq_CH_bound = (0, 1e7)
+r_Nhomeo_bounds = (0, 1)
+pmax_nr_bounds = (0, 1)
+
+# Initial Conditions
+N_R0 = 2.5 * (10 ** 3)
+N_A0 = 0
+ND_A0 = 0
+ND_N0 = 0
+M_R0 = Mmax
+M_A0 = 0
+AP_S0 = supp
+AP_Ebt0 = AP_S0 + APEbmax
+AP_St0 = 0.0
+AP_Eb0 = 4000.
+AP_Et0 = 2500.
+AP_El0 = APElmax
+D0 = 0
+CH0 = 0
+G0 = 0
+ACH0 = 0
+N_B0 = 6e11/5e6  # 1 liter = 1e6 mm^3
+
+rinduce = 0 * _day
+AP_Sinj = (1 * 5.6 * 80.) / (60. * 5)
+step_max = 10 ** 100
+
+# computed based on steady-state
+r_homeo = Pmin_NR - mu_NR
+
+time = 'min'
+_stoptime = 36. * 60.
+_numpoints = 10000
+
+ITMtrans0 = 0
+
+
+pred_fle = 'result/ITM0AP.txt'
+cyto_fle = 'data/APPIREDII/cytokines.txt'
+
+sample_fle = 'data/APPIREDII/sample.txt'
+trt_fle = 'data/APPIREDII/segregation.txt'
+AP_fle = 'data/APPIREDII/Median_AlkFosf.csv'
+german_hospital_file = 'data/APPIREDII/zol.be.visits.txt'
+dutch_hospital_file = 'data/APPIREDII/20130725appired-Eindhoven.txt'
+treatment_file = 'data/APPIREDII/segregation.txt'
+
+
+def get_params(innate, p0):
+    phi_mra = phi_MRA
+    mu_nr = mu_NR
+    mu_na = mu_NA
+    mu_ndn = mu_NDN
+    mu_ape = mu_APE
+    mu_aps_fast = mu_APSfast
+    mu_aps_slow = mu_APSslow
+    mu_aps = mu_APS
+    mu_ma = mu_MA
+    mu_mr = mu_MR
+    mu_ach = mu_ACH
+    mu_ch = mu_CH
+    mu_itm = mu_ITM
+
+    lamb_itmna = lamb_ITMNA
+    lamb_ape = lamb_APE
+    lamb_aps = lamb_APS
+    lamb_itmma = lamb_ITMMA
+
+    alpha_achma = alpha_ACHMA
+
+    pmax_mr = Pmax_MR
+    pmin_mr = Pmin_MR
+    pmin_nr = Pmin_NR
+    pmax_itm = Pmax_ITM
+    pmin_itm = Pmin_ITM
+
+    mmax = Mmax
+    nmax = Nmax
+    achmax = ACHmax
+    chmax_tissue = CHmax_tissue
+
+    itmmax = ITMmax
+
+    apebmax = innate.convert_AP(APEbmax, 'endo', 'tissue')
+    apelmax = innate.convert_AP(APElmax, 'endo', 'tissue')
+    apemax = innate.convert_AP(APEmax, 'endo', 'tissue')
+    apsmax = innate.convert_AP(APSmax, 'supp', 'blood')
+
+    # Initial Conditions
+    n_r0 = N_R0
+    n_a0 = N_A0
+    nd_a0 = ND_A0
+    nd_n0 = ND_N0
+    m_r0 = M_R0
+    m_a0 = M_A0
+    ap_s0 = innate.convert_AP(AP_S0, 'supp', 'blood')
+    ap_st0 = AP_St0
+    ap_et0 = innate.convert_AP(AP_Et0, 'endo', 'tissue')
+    ap_el0 = innate.convert_AP(AP_El0, 'endo', 'blood')
+    ap_eb0 = innate.convert_AP(AP_Eb0, 'endo', 'blood') + ap_el0
+
+    ch0 = CH0
+    ach0 = ACH0
+
+    ap_sinj = innate.convert_AP(AP_Sinj, 'supp', 'blood')
+    stepmax = step_max
+
+    t = [_stoptime * float(i) / (_numpoints - 1) for i in range(_numpoints)]
+
+    itmblood0 = ITMblood0
+    itmtissue0 = ITMtissue0
+    predfle = pred_fle
+
+    itm_source_peak = ITM_source_peak
+    itm_source_width = ITM_source_width
+
+    beta_chma, beta_chna, theta_ACH, beta_manda, lamb_itmndn, alpha_itmndn, pmax_ape, pmin_ape, rdistress, \
+    w_gauss_min, rinduce_peak, rinduce, r_ap, r_itm, r_itmpeak, r_ndn, lamb_mandn, lamb_manda, mu_nda, keq_ch, \
+    r_nhomeo, pmax_nr = abs(p0[0]), abs(p0[1]), abs(p0[2]), abs(p0[3]), abs(p0[4]), abs(p0[5]), abs(p0[6]), \
+                        abs(p0[7]), abs(p0[8]), abs(p0[9]), abs(p0[10]), abs(p0[11]), abs(p0[12]), abs(p0[13]), \
+                        abs(p0[14]), abs(p0[15]), abs(p0[16]), abs(p0[17]), abs(p0[18]), abs(p0[19]), abs(p0[20]), abs(p0[21])
+    r_aphomeo = pmin_ape + mu_APE
+
+    p = [mu_ach, mu_ape, mu_aps, mu_aps_fast, mu_aps_slow, mu_ch, mu_ma, mu_mr, mu_na, mu_nda, mu_ndn,
+         mu_nr, mu_itm, pmin_mr, pmin_nr, achmax, chmax_tissue, mmax, nmax, pmax_mr, pmax_nr, keq_ch, phi_mra,
+         theta_ACH, lamb_ape, lamb_itmna, lamb_itmma, lamb_manda, lamb_mandn, lamb_aps, alpha_achma, beta_chma,
+         beta_chna, beta_manda, apemax, apebmax, apelmax, apsmax, rdistress, lamb_itmndn, alpha_itmndn, pmax_ape,
+         pmin_ape, rinduce_peak, ap_sinj, w_gauss_min, r_nhomeo, r_aphomeo, pmax_itm, pmin_itm, itmmax, stepmax,
+         r_ndn, r_itm, r_itmpeak, r_AP, rinduce, itm_source_peak, itm_source_width]
+
+    w = [n_r0, ap_eb0, ap_et0, ap_el0, ap_s0, ap_st0, itmblood0, itmtissue0, m_r0, m_a0, ch0, n_a0, nd_a0, ach0, nd_n0]
+    return p, w, predfle
+
+
+def get_boundaries():
+    boundaries = {
+        'beta_CHMA': beta_CHMA_bound,
+        'beta_CHNA': beta_CHNA_bound,
+        'theta_ACH': theta_ACH_bound,
+        'beta_MANDA': beta_MANDA_bound,
+        'lamb_ITMNDN': lamb_ITMNDN_bound,
+        'alpha_ITMNDN': alpha_ITMNDN_bound,
+        'Pmax_APE': Pmax_APE_bound,
+        'Pmin_APE': Pmin_APE_bound,
+        'rdistress': rdistress_bound,
+        'w_gauss_min': w_gauss_min_bound,
+        'rinduce_peak': rinduce_peak_bound,
+        'rinduce': rinduce_bound,
+        'r_AP': r_AP_bound,
+        'r_ITM': r_ITM_bound,
+        'r_ITMpeak': r_ITMpeak_bound,
+        'r_NDN': r_NDN_bound,
+        'lamb_MANDN': lamb_MANDN_bound,
+        'lamb_MANDA': lamb_MANDA_bound,
+        'mu_NDA': mu_NDA_bound,
+        'Keq_CH': Keq_CH_bound,
+        'r_Nhomeo': r_Nhomeo_bounds,
+        'Pmax_NR': pmax_nr_bounds
+    }
+    return boundaries
+
+
+def get_t(innate):
+    stoptime = innate.convert_to_day(_stoptime, time)
+    t = [stoptime * float(i) / (_numpoints - 1) for i in range(_numpoints)]
+    return t
+
+
+def stoptime():
+    return _stoptime
