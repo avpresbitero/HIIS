@@ -2,40 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd8a5913-abe5-40c4-9168-d4baa3335b1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Optimize_Params.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/APPIREDII/Median_AlkFosf.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/APPIREDII/blap_AlkFosf.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/APPIREDII/placebo_AlkFosf.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IFNg (40).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL10 (43).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL12 (62).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL13 (32).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL1a (58).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL1b (33).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL2 (60).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL4 (65).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL6 (36).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/IL8 (34).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/bIAP/TNFa (56).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IFNg (40).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL10 (43).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL12 (62).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL13 (32).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL1a (58).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL1b (33).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL2 (60).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL4 (65).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL6 (36).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL8 (34).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/IL8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/MCP1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/TNFa (56).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/TNFa.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/plots/placebo/VEGF.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/ITM0AP.txt" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,8 +20,8 @@
       <file leaf-file-name="README" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -117,11 +84,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="result" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HIIS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HIIS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="APPIREDII" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,9 +261,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1278" height="758" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -323,8 +300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
           <folding />
         </state>
       </provider>
