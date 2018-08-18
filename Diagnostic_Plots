@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
+import os
 
 from collections import OrderedDict
 
@@ -180,7 +181,7 @@ def get_residuals(params):
     return residuals, list(df_cyto_model['time']), list(df_ap_data['time'])
 
 
-def plot(residuals, cyto_time, ap_time):
+def plot(project_dir, residuals, cyto_time, ap_time):
     sns.set_style("ticks")
     sns.set_style({"xtick.direction": "in", "ytick.direction": "in", "axes.linewidth": 2.5})
 
@@ -192,43 +193,45 @@ def plot(residuals, cyto_time, ap_time):
 
     color = '#e41a1c'
 
-    sns.plt.figure(0)
-    sns.plt.plot([t/60. for t in cyto_time], residuals['CH'], linewidth=lw, label="CH Residual", ls='-', color=color)
-    sns.plt.xlabel("Hours After Operation", fontsize=fs)
-    sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-    sns.plt.title("Pro-inflammatory Cytokines", fontsize=ts)
-    sns.plt.hold(True)
-    sns.plt.legend(loc='best', fontsize=lfs)
-    sns.plt.tick_params(labelsize=ls)
-    sns.plt.savefig('result/plots/' + 'CH_Residual.png', format='png', dpi=500, bbox_inches='tight')
+    plt.figure(0)
+    plt.plot([t/60. for t in cyto_time], residuals['CH']/(max(residuals['CH'])), linewidth=lw, label="CH Residual", ls='-', color=color)
+    plt.xlabel("Hours After Operation", fontsize=fs)
+    plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+    plt.title("Pro-inflammatory Cytokines", fontsize=ts)
+    plt.hold(True)
+    plt.legend(loc='best', fontsize=lfs)
+    plt.tick_params(labelsize=ls)
+    plt.savefig(project_dir + '/CH_Residual.png', format='png', dpi=500, bbox_inches='tight')
 
-    sns.plt.figure(1)
-    sns.plt.plot([t/60. for t in cyto_time], residuals['ACH'], linewidth=lw, label="ACH Residual", ls='-', color=color)
-    sns.plt.xlabel("Hours After Operation", fontsize=fs)
-    sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-    sns.plt.title("Anti-inflammatory Cytokines", fontsize=ts)
-    sns.plt.hold(True)
-    sns.plt.legend(loc='best', fontsize=lfs)
-    sns.plt.tick_params(labelsize=ls)
-    sns.plt.savefig('result/plots/' + 'ACH_Residual.png', format='png', dpi=500, bbox_inches='tight')
+    plt.figure(1)
+    plt.plot([t/60. for t in cyto_time], residuals['ACH']/(max(residuals['ACH'])), linewidth=lw, label="ACH Residual", ls='-', color=color)
+    plt.xlabel("Hours After Operation", fontsize=fs)
+    plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+    plt.title("Anti-inflammatory Cytokines", fontsize=ts)
+    plt.legend(loc='best', fontsize=lfs)
+    plt.tick_params(labelsize=ls)
+    plt.savefig(project_dir + '/ACH_Residual.png', format='png', dpi=500, bbox_inches='tight')
 
-    sns.plt.figure(2)
-    sns.plt.plot([t / 60. for t in ap_time], residuals['AP'], linewidth=lw, label="AP Residual", ls='-', color=color)
-    sns.plt.xlabel("Hours After Operation", fontsize=fs)
-    sns.plt.ylabel("concentration $IU/L$", fontsize=fs)
-    sns.plt.title("Alkaline Phosphatase", fontsize=ts)
-    sns.plt.hold(True)
-    sns.plt.legend(loc='best', fontsize=lfs)
-    sns.plt.tick_params(labelsize=ls)
-    sns.plt.savefig('result/plots/' + 'AP_Residual.png', format='png', dpi=500, bbox_inches='tight')
+    plt.figure(2)
+    plt.plot([t / 60. for t in ap_time], residuals['AP']/(max(residuals['AP'])), linewidth=lw, label="AP Residual", ls='-', color=color)
+    plt.xlabel("Hours After Operation", fontsize=fs)
+    plt.ylabel("concentration $IU/L$", fontsize=fs)
+    plt.title("Alkaline Phosphatase", fontsize=ts)
+    plt.legend(loc='best', fontsize=lfs)
+    plt.tick_params(labelsize=ls)
+    plt.savefig(project_dir + '/AP_Residual.png', format='png', dpi=500, bbox_inches='tight')
 
 
 if __name__ == '__main__':
+    project_dir = 'C:/Users/Alva/Google Drive/Alva Modeling Immune System/Innate Immunity/Journal Papers/' \
+                         'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/diagnostics'
     params = {'h': 'h4',
               'restrict': False,
               'case': 6,
               'treatment_type': 'biap'
               }
+    if not os.path.exists(project_dir):
+        os.makedirs(project_dir)
     residuals, cyto_time, ap_time = get_residuals(params)
-    print ([i/60 for i in ap_time])
-    plot(residuals, cyto_time, ap_time)
+    print([i/60 for i in ap_time])
+    plot(project_dir,residuals, cyto_time, ap_time)

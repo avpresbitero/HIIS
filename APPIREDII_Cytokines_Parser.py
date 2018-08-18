@@ -157,8 +157,7 @@ def change_unit(df):
     return df
 
 
-def reverse_unit(series):
-    cyto = series.name
+def reverse_unit(lst, cyto):
     if cyto == 'il6':
         mw = 21 * 10 ** 3
     elif cyto == 'il10':
@@ -166,8 +165,7 @@ def reverse_unit(series):
     elif cyto == 'il8':
         mw = 11 * 10 ** 3
     mult = ((1 * 10 ** -12) * (6.02 * 10 ** 23) / ((1 * 10 ** -3) * mw * 10 ** 6))
-    series = series.divide(mult)
-    return series
+    return [i/mult for i in lst]
 
 
 def plot(df, cyto_lst, trt_fle, smpl_fle):
@@ -238,17 +236,7 @@ if __name__ == "__main__":
     colhd = 'time'
     treatment = 'Placebo'
     df = read_data(cyto_fle)
-    patients = ['16', '51', '36', '26', '59']
-    # df, dic = cyto.get_median_restrict(cyto_fle, smpl_fle, trt_fle, colhd, treatment, patients)
-
-    # cyto_lst =['IL6','IL10','MCP1','IL8','VEGF','TNFa']
-    # cyto.plot(df, cyto_lst, trt_fle, sample_fle)
-    # print(cyto.get_median(cyto_fle, sample_fle, trt_fle, 'time'))
-    # print(cyto.add_trtmnt(df, trt_fle))
-
     df_median, cyto_dic = get_median(cyto_fle, sample_fle, trt_fle, 'time')
     df_IL10 = df_median[df_median['cytokine'] == 'il10']
     df_IL6 = df_median[df_median['cytokine'] == 'il6']
-    # print(df_IL6.loc[df_IL6['median'].idxmax()])
 
-    # cyto.get_special_patients(cyto_fle, trt_fle, sample_fle, peak=True)

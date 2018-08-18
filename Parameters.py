@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 _day = 1/1140.
 
 phi_MRA = 0.083 * _day
@@ -84,20 +86,135 @@ lamb_MANDA = 0.00002
 ITM_source_peak = 4 * 10 ** 6
 ITM_source_width = 5 * 10 ** 2
 
+# calibrated
+beta_CHMA = 7.8e-4
+beta_CHNA = 4.8e-2
+theta_ACH = 1e-10
+beta_MANDA = 9e1
+lamb_ITMNDN = 1.e-6
+alpha_ITMNDN = 1e3
+Pmax_APE = 0.002
+Pmin_APE = 0.0002
+rdistress = 3e6  # 1e6
+w_gauss_min = 8e7
+rinduce_peak = 21.0
+rinduce = 0.05
+r_AP = 0.08
+r_ITM = 0.5
+r_ITMpeak = 5 * 10 ** 12
+r_NDN = 0.008
+lamb_MANDN = 5e-6
+lamb_MANDA = 3e-5
+mu_NDA = 2.5e1
+Keq_CH = 2e4
+r_Nhomeo = 1e-4
+Pmax_NR = 6e-3
 
 # boundary
+# beta_CHMA_bound = (1e-5, 1e-2)
+# beta_CHNA_bound = (1e-3, 1e-1)
+# theta_ACH_bound = (1e-11, 1e-9)
+# beta_MANDA_bound = (1, 1e2)
+# lamb_ITMNDN_bound = (1e-7, 1e-5)
+# alpha_ITMNDN_bound = (1e2, 1e4)
+# Pmax_APE_bound = (1e-4, 1e-2)
+# Pmin_APE_bound = (1e-5, 1e-3)
+# rdistress_bound = (1e5, 1e7)
+# w_gauss_min_bound = (1e6, 1e8)
+# rinduce_peak_bound = (10, 30)
+# rinduce_bound = (1e-3, 1e-1)
+# r_AP_bound = (1e-3, 1e-1)
+# r_ITM_bound = (0, 1)
+# r_ITMpeak_bound = (10 ** 10, 10 ** 14)
+# r_NDN_bound = (1e-4, 1e-2)
+# lamb_MANDN_bound = (1e-7, 1e-5)
+# lamb_MANDA_bound = (1e-6, 1e-4)
+# mu_NDA_bound = (1, 1e2)
+# Keq_CH_bound = (1e3, 1e5)
+# r_Nhomeo_bounds = (1e-5, 1e-3)
+# pmax_nr_bounds = (1e-4, 1e-2)
+
+# beta_CHMA_bound = (0, 50)
+# beta_CHNA_bound = (0, 50)
+# theta_ACH_bound = (0, 50)
+# beta_MANDA_bound = (0, 10 ** 7)
+# lamb_ITMNDN_bound = (0, 50)
+# alpha_ITMNDN_bound = (0, 1 * 10 ** 7)
+# Pmin_APE_bound = (0, 50)
+# Pmax_APE_bound = (0, 50)
+# rdistress_bound = (0, 10**12)
+# w_gauss_min_bound = (0, 10**12)
+# rinduce_peak_bound = (0, 100)
+# rinduce_bound = (0, 50)
+# r_ITM_bound = (0, 50)
+# r_ITMpeak_bound = (0, 10 ** 16)
+# r_NDN_bound = (0, 50)
+# r_AP_bound = (0, 50)
+# lamb_MANDN_bound = (0, 50)
+# lamb_MANDA_bound = (0, 50)
+# mu_NDA_bound = (0, 10**7)
+# Keq_CH_bound = (0, 1e10)
+# r_Nhomeo_bounds = (0, 50)
+# pmax_nr_bounds = (0, 50)
+
+# beta_CHMA_bound = (0, 10)
+# beta_CHNA_bound = (0, 10)
+# theta_ACH_bound = (0, 10)
+# beta_MANDA_bound = (0, 10 ** 4)
+# lamb_ITMNDN_bound = (0, 10)
+# alpha_ITMNDN_bound = (0, 1 * 10 ** 4)
+# Pmin_APE_bound = (0, 1)
+# Pmax_APE_bound = (0, 10)
+# rdistress_bound = (0, 10**9)
+# w_gauss_min_bound = (0, 10**9)
+# rinduce_peak_bound = (0, 100)
+# rinduce_bound = (0, 10)
+# r_ITM_bound = (0, 10)
+# r_ITMpeak_bound = (0, 10 ** 14)
+# r_NDN_bound = (0, 10)
+# r_AP_bound = (0, 10)
+# lamb_MANDN_bound = (0, 10)
+# lamb_MANDA_bound = (0, 10)
+# mu_NDA_bound = (0, 10**4)
+# Keq_CH_bound = (0, 1e7)
+# r_Nhomeo_bounds = (0, 10)
+# pmax_nr_bounds = (0, 10)
+
+# beta_CHMA_bound = (0, 0.5)
+# beta_CHNA_bound = (0, 0.5)
+# theta_ACH_bound = (0, 0.5)
+# beta_MANDA_bound = (0, 10 ** 4)
+# lamb_ITMNDN_bound = (0, 0.5)
+# alpha_ITMNDN_bound = (0, 1 * 10 ** 4)
+# Pmin_APE_bound = (0, 0.1)
+# Pmax_APE_bound = (0, 1)
+# rdistress_bound = (0, 10**9)
+# w_gauss_min_bound = (0, 10**9)
+# rinduce_peak_bound = (0, 30)
+# rinduce_bound = (0, 0.5)
+# r_ITM_bound = (0, 0.5)
+# r_ITMpeak_bound = (0, 10 ** 14)
+# r_NDN_bound = (0, 0.5)
+# r_AP_bound = (0, 0.5)
+# lamb_MANDN_bound = (0, 0.5)
+# lamb_MANDA_bound = (0, 0.5)
+# mu_NDA_bound = (0, 10**4)
+# Keq_CH_bound = (0, 1e7)
+# r_Nhomeo_bounds = (0, 0.5)
+# pmax_nr_bounds = (0, 0.5)
+
 beta_CHMA_bound = (0, 1)
 beta_CHNA_bound = (0, 1)
 theta_ACH_bound = (0, 1)
 beta_MANDA_bound = (0, 10 ** 4)
 lamb_ITMNDN_bound = (0, 1)
 alpha_ITMNDN_bound = (0, 1 * 10 ** 4)
-Pmin_APE_bound = (0, 1)
+Pmin_APE_bound = (0, 0.1)
 Pmax_APE_bound = (0, 1)
 rdistress_bound = (0, 10**9)
 w_gauss_min_bound = (0, 10**9)
-rinduce_peak_bound = (0, 30)
-rinduce_bound = (0, 1)
+rinduce_peak_bound = (0, 100)
+rinduce_bound = (0, 10)
 r_ITM_bound = (0, 1)
 r_ITMpeak_bound = (0, 10 ** 14)
 r_NDN_bound = (0, 1)
@@ -108,6 +225,30 @@ mu_NDA_bound = (0, 10**4)
 Keq_CH_bound = (0, 1e7)
 r_Nhomeo_bounds = (0, 1)
 pmax_nr_bounds = (0, 1)
+
+
+# beta_CHMA_bound = (0, 100)
+# beta_CHNA_bound = (0, 100)
+# theta_ACH_bound = (0, 100)
+# beta_MANDA_bound = (0, 10 ** 5)
+# lamb_ITMNDN_bound = (0, 100)
+# alpha_ITMNDN_bound = (0, 1 * 10 ** 5)
+# Pmin_APE_bound = (0, 10)
+# Pmax_APE_bound = (0, 100)
+# rdistress_bound = (0, 10**10)
+# w_gauss_min_bound = (0, 10**10)
+# rinduce_peak_bound = (0, 100)
+# rinduce_bound = (0, 100)
+# r_ITM_bound = (0, 100)
+# r_ITMpeak_bound = (0, 10 ** 15)
+# r_NDN_bound = (0, 100)
+# r_AP_bound = (0, 100)
+# lamb_MANDN_bound = (0, 100)
+# lamb_MANDA_bound = (0, 100)
+# mu_NDA_bound = (0, 10**5)
+# Keq_CH_bound = (0, 1e8)
+# r_Nhomeo_bounds = (0, 100)
+# pmax_nr_bounds = (0, 100)
 
 # Initial Conditions
 N_R0 = 2.5 * (10 ** 3)
@@ -225,7 +366,9 @@ def get_params(innate, p0):
     w_gauss_min, rinduce_peak, rinduce, r_ap, r_itm, r_itmpeak, r_ndn, lamb_mandn, lamb_manda, mu_nda, keq_ch, \
     r_nhomeo, pmax_nr = abs(p0[0]), abs(p0[1]), abs(p0[2]), abs(p0[3]), abs(p0[4]), abs(p0[5]), abs(p0[6]), \
                         abs(p0[7]), abs(p0[8]), abs(p0[9]), abs(p0[10]), abs(p0[11]), abs(p0[12]), abs(p0[13]), \
-                        abs(p0[14]), abs(p0[15]), abs(p0[16]), abs(p0[17]), abs(p0[18]), abs(p0[19]), abs(p0[20]), abs(p0[21])
+                        abs(p0[14]), abs(p0[15]), abs(p0[16]), abs(p0[17]), abs(p0[18]), abs(p0[19]), abs(p0[20]), \
+                        abs(p0[21])
+
     r_aphomeo = pmin_ape + mu_APE
 
     p = [mu_ach, mu_ape, mu_aps, mu_aps_fast, mu_aps_slow, mu_ch, mu_ma, mu_mr, mu_na, mu_nda, mu_ndn,
@@ -233,43 +376,136 @@ def get_params(innate, p0):
          theta_ACH, lamb_ape, lamb_itmna, lamb_itmma, lamb_manda, lamb_mandn, lamb_aps, alpha_achma, beta_chma,
          beta_chna, beta_manda, apemax, apebmax, apelmax, apsmax, rdistress, lamb_itmndn, alpha_itmndn, pmax_ape,
          pmin_ape, rinduce_peak, ap_sinj, w_gauss_min, r_nhomeo, r_aphomeo, pmax_itm, pmin_itm, itmmax, stepmax,
-         r_ndn, r_itm, r_itmpeak, r_AP, rinduce, itm_source_peak, itm_source_width]
+         r_ndn, r_itm, r_itmpeak, r_ap, rinduce, itm_source_peak, itm_source_width]
 
     w = [n_r0, ap_eb0, ap_et0, ap_el0, ap_s0, ap_st0, itmblood0, itmtissue0, m_r0, m_a0, ch0, n_a0, nd_a0, ach0, nd_n0]
     return p, w, predfle
 
 
+def get_params_to_pass(innate, p0_to_pass):
+
+    # Initial Conditions
+    n_r0 = N_R0
+    n_a0 = N_A0
+    nd_a0 = ND_A0
+    nd_n0 = ND_N0
+    m_r0 = M_R0
+    m_a0 = M_A0
+    ap_s0 = innate.convert_AP(AP_S0, 'supp', 'blood')
+    ap_st0 = AP_St0
+    ap_et0 = innate.convert_AP(AP_Et0, 'endo', 'tissue')
+    ap_el0 = innate.convert_AP(AP_El0, 'endo', 'blood')
+    ap_eb0 = innate.convert_AP(AP_Eb0, 'endo', 'blood') + ap_el0
+    ch0 = CH0
+    ach0 = ACH0
+
+    ap_sinj = innate.convert_AP(AP_Sinj, 'supp', 'blood')
+    stepmax = step_max
+
+    t = [_stoptime * float(i) / (_numpoints - 1) for i in range(_numpoints)]
+
+    itmblood0 = ITMblood0
+    itmtissue0 = ITMtissue0
+    predfle = pred_fle
+
+    p = OrderedDict()
+    p['mu_ACH'] = mu_ACH
+    p['mu_APE'] = mu_APE
+    p['mu_APS'] = mu_APS
+    p['mu_APSfast'] = mu_APSfast
+    p['mu_APSslow'] = mu_APSslow
+    p['mu_CH'] = mu_CH
+    p['mu_MA'] = mu_MA
+    p['mu_MR'] = mu_MR
+    p['mu_NA'] = mu_NA
+    p['mu_NDA'] = mu_NDA
+    p['mu_NDN'] = mu_NDN
+    p['mu_NR'] = mu_NR
+    p['mu_ITM'] = mu_ITM
+    p['Pmin_MR'] = Pmin_MR
+    p['Pmin_NR'] = Pmin_NR
+    p['ACHmax'] = ACHmax
+    p['CHmax_tissue'] = CHmax_tissue
+    p['Mmax'] = Mmax
+    p['Nmax'] = Nmax
+    p['Pmax_MR'] = Pmax_MR
+    p['Pmax_NR'] = Pmax_NR
+    p['Keq_CH'] = Keq_CH
+    p['phi_MRA'] = phi_MRA
+    p['theta_ACH'] = theta_ACH
+    p['lamb_APE'] = lamb_APE
+    p['lamb_ITMNA'] = lamb_ITMNA
+    p['lamb_ITMMA'] = lamb_ITMMA
+    p['lamb_MANDA'] = lamb_MANDA
+    p['lamb_MANDN'] = lamb_MANDN
+    p['lamb_APS'] = lamb_APS
+    p['alpha_ACHMA'] = alpha_ACHMA
+    p['beta_CHMA'] = beta_CHMA
+    p['beta_CHNA'] = beta_CHNA
+    p['beta_MANDA'] = beta_MANDA
+    p['APEmax'] = innate.convert_AP(APEmax, 'endo', 'tissue')
+    p['APEbmax'] = innate.convert_AP(APEbmax, 'endo', 'tissue')
+    p['APElmax'] = innate.convert_AP(APElmax, 'endo', 'tissue')
+    p['APSmax'] = innate.convert_AP(APSmax, 'supp', 'blood')
+    p['rdistress'] = rdistress
+    p['lamb_ITMNDN'] = lamb_ITMNDN
+    p['alpha_ITMNDN'] = alpha_ITMNDN
+    p['Pmax_APE'] = Pmax_APE
+    p['Pmin_APE'] = Pmin_APE
+    p['rinduce_peak'] = rinduce_peak
+    p['AP_Sinj'] = AP_Sinj
+    p['w_gauss_min'] = w_gauss_min
+    p['r_Nhomeo'] = r_Nhomeo
+    p['r_APhomeo'] = 0
+    p['Pmax_ITM'] = Pmax_ITM
+    p['Pmin_ITM'] = Pmin_ITM
+    p['ITMmax'] = ITMmax
+    p['step_max'] = step_max
+    p['r_NDN'] = r_NDN
+    p['r_ITM'] = r_ITM
+    p['r_ITMpeak'] = r_ITMpeak
+    p['r_AP'] = r_AP
+    p['rinduce'] = rinduce
+    p['ITM_source_peak'] = ITM_source_peak
+    p['ITM_source_width'] = ITM_source_width
+
+    for key, value in p0_to_pass.items():
+        p[key] = value
+    p['r_APhomeo'] = p['Pmin_APE'] + p['mu_APE']
+    w = [n_r0, ap_eb0, ap_et0, ap_el0, ap_s0, ap_st0, itmblood0, itmtissue0, m_r0, m_a0, ch0, n_a0, nd_a0, ach0, nd_n0]
+    return p.values(), w, predfle
+
+
 def get_boundaries():
-    boundaries = {
-        'beta_CHMA': beta_CHMA_bound,
-        'beta_CHNA': beta_CHNA_bound,
-        'theta_ACH': theta_ACH_bound,
-        'beta_MANDA': beta_MANDA_bound,
-        'lamb_ITMNDN': lamb_ITMNDN_bound,
-        'alpha_ITMNDN': alpha_ITMNDN_bound,
-        'Pmax_APE': Pmax_APE_bound,
-        'Pmin_APE': Pmin_APE_bound,
-        'rdistress': rdistress_bound,
-        'w_gauss_min': w_gauss_min_bound,
-        'rinduce_peak': rinduce_peak_bound,
-        'rinduce': rinduce_bound,
-        'r_AP': r_AP_bound,
-        'r_ITM': r_ITM_bound,
-        'r_ITMpeak': r_ITMpeak_bound,
-        'r_NDN': r_NDN_bound,
-        'lamb_MANDN': lamb_MANDN_bound,
-        'lamb_MANDA': lamb_MANDA_bound,
-        'mu_NDA': mu_NDA_bound,
-        'Keq_CH': Keq_CH_bound,
-        'r_Nhomeo': r_Nhomeo_bounds,
-        'Pmax_NR': pmax_nr_bounds
-    }
+    boundaries = OrderedDict()
+    boundaries['beta_CHMA'] = beta_CHMA_bound
+    boundaries['beta_CHNA'] = beta_CHNA_bound
+    boundaries['theta_ACH'] = theta_ACH_bound
+    boundaries['beta_MANDA'] = beta_MANDA_bound
+    boundaries['lamb_ITMNDN'] = lamb_ITMNDN_bound
+    boundaries['alpha_ITMNDN'] = alpha_ITMNDN_bound
+    boundaries['Pmax_APE'] = Pmax_APE_bound
+    boundaries['Pmin_APE'] = Pmin_APE_bound
+    boundaries['rdistress'] = rdistress_bound
+    boundaries['w_gauss_min'] = w_gauss_min_bound
+    boundaries['rinduce_peak'] = rinduce_peak_bound
+    boundaries['rinduce'] = rinduce_bound
+    boundaries['r_AP'] = r_AP_bound
+    boundaries['r_ITM'] = r_ITM_bound
+    boundaries['r_ITMpeak'] = r_ITMpeak_bound
+    boundaries['r_NDN'] = r_NDN_bound
+    boundaries['lamb_MANDN'] = lamb_MANDN_bound
+    boundaries['lamb_MANDA'] = lamb_MANDA_bound
+    boundaries['mu_NDA'] = mu_NDA_bound
+    boundaries['Keq_CH'] = Keq_CH_bound
+    boundaries['r_Nhomeo'] = r_Nhomeo_bounds
+    boundaries['Pmax_NR'] = pmax_nr_bounds
     return boundaries
 
 
-def get_t(innate):
+def get_t(innate, numpoints):
     stoptime = innate.convert_to_day(_stoptime, time)
-    t = [stoptime * float(i) / (_numpoints - 1) for i in range(_numpoints)]
+    t = [stoptime * float(i) / (numpoints - 1) for i in range(numpoints)]
     return t
 
 

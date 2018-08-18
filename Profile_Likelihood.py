@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import os
 
-
 import Parameters as par
 import APPIREDII_Blood_Params_Parser as dp
 import APPIREDII_Cytokines_Parser as cyto
@@ -67,6 +66,14 @@ def get_header():
     return header
 
 
+def get_boundaries_to_pass(boundaries, param_profile):
+    boundaries_to_pass = OrderedDict()
+    for key, value in boundaries.items():
+        if key != param_profile:
+            boundaries_to_pass[key] = value
+    return boundaries_to_pass
+
+
 def get_cyto_data(files):
     df_cyto, cyto_dic = cyto.get_median(ct_fle=files['cytokine_file'],
                                         smpl_fle=files['sample_file'],
@@ -90,7 +97,7 @@ def get_ap_data(files):
 
 
 def get_from_normal_dist(mu, max_boundary, counter):
-    np.random.seed(int(counter))
+    # np.random.seed(int(counter))
     mu_norm = mu / float(max_boundary)
     s_norm = np.random.normal(mu_norm, mu_norm / 3., 1000)
     s = np.random.choice(s_norm)
@@ -100,7 +107,7 @@ def get_from_normal_dist(mu, max_boundary, counter):
 
 
 def get_value_uniform_dist(boundary, counter):
-    np.random.seed(int(counter))
+    # np.random.seed(int(counter))
     uniform_list = np.linspace(boundary[0], boundary[1], 100)
     return np.random.choice(uniform_list)
 
@@ -115,6 +122,14 @@ def get_initial_params(params, trial):
         elif params['distribution'] == 'uniform':
             initial_params[key] = get_value_uniform_dist(boundary, trial)
     return initial_params
+
+
+def get_p0_to_pass(param_profile, p0_complete):
+    params_to_pass = OrderedDict()
+    for key, value in p0_complete.items():
+        if key != param_profile:
+            params_to_pass[key] = value
+    return params_to_pass
 
 
 def get_restricted_data(df_data, blood_param, params):
@@ -169,12 +184,26 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
 
     df_ch_model = df_cyto_model['ch']
     df_ach_model = df_cyto_model['ach']
+    # df_ch_model = cyto.reverse_unit(df_cyto_model['ch'].tolist(), 'il6')
+    # df_ach_model = cyto.reverse_unit(df_cyto_model['ach'].tolist(), 'il10')
     df_ap_model = np.add(df_ap_model['ap_eblood'], df_ap_model['ap_sblood'])
     df_ap_model_converted = innate.reverse_AP(df_ap_model, 'endo', 'blood')
 
-    df_ch_data_median =df_ch_data['median']
+    df_ch_data_median = df_ch_data['median']
     df_ach_data_median = df_ach_data['median']
+    # df_ch_data_median = cyto.reverse_unit(df_ch_data['median'].tolist(), 'il6')
+    # df_ach_data_median = cyto.reverse_unit(df_ach_data['median'].tolist(), 'il10')
     df_ap_data_median = df_ap_data['median']
+
+    # normalize
+    if max(df_ch_data_median) != 0: df_ch_data_median = df_ch_data_median/max(df_ch_data_median)
+    if max(df_ch_model) != 0: df_ch_model = df_ch_model/max(df_ch_model.dropna())
+
+    if max(df_ach_data_median) != 0: df_ach_data_median = df_ach_data_median/max(df_ach_data_median)
+    if max(df_ach_model) != 0: df_ach_model = df_ach_model/max(df_ach_model.dropna())
+
+    if max(df_ap_data_median) != 0: df_ap_data_median = df_ap_data_median/max(df_ap_data_median)
+    if max(df_ap_model_converted) != 0: df_ap_model_converted = df_ap_model_converted/max(df_ap_model_converted.dropna())
 
     try:
         rmse_CH = ((mean_squared_error(y_true=df_ch_data_median,
@@ -185,11 +214,11 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
                                         y_pred=df_ach_model,
                                         sample_weight=df_ach_data['weights']))
                     / np.sum((df_ach_data_median - np.median(df_ach_data_median))**2))**2
-
         rmse_AP = ((mean_squared_error(y_true=df_ap_data_median,
                                        y_pred=df_ap_model_converted,
                                        sample_weight=df_ap_data['weights']))
                    / np.sum((df_ap_data_median - np.median(df_ap_data_median))**2))**2
+
     except ValueError as v_error:
         print(v_error)
         rmse_CH = RMSE_CH
@@ -204,16 +233,19 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
     RMSE_CH = rmse_CH
     RMSE_ACH = rmse_ACH
     RMSE_AP = rmse_AP
+
     return sum_RMSE
 
 
-def get_objective_function(p0, params):
+def get_objective_function(p0, params, param_profile, value, p0_to_pass):
     # print("Getting the objective function...")
+    p0_to_pass_copy = p0_to_pass.copy()
+    p0_to_pass_copy[param_profile] = value
     files = get_files()
     df_cyto_data = get_cyto_data(files)
     df_ap_data = get_ap_data(files)
     header = get_header()
-    p, w, pred_fle = par.get_params(innate, p0)
+    p, w, pred_fle = par.get_params_to_pass(innate, p0_to_pass_copy)
     w0 = innate.get_init(w, params)
 
     df_cyto_model, df_cyto_data = get_concentrations(df_data=df_cyto_data,
@@ -228,7 +260,6 @@ def get_objective_function(p0, params):
                                                  header=header,
                                                  blood_parameter='ap',
                                                  params=params)
-
 
     rmse = get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model)
 
@@ -260,13 +291,14 @@ def set_to_mins(hrs_lst):
     return dys_lst
 
 
-def optimize_params(boundaries, p0, params):
+def optimize_params(boundaries, params, p0_to_pass, param_profile, value):
+    boundaries_to_pass = get_boundaries_to_pass(boundaries, param_profile)
     res = minimize(get_objective_function,
-                   x0=list(p0.values()),
+                   x0=list(p0_to_pass.values()),
                    method=params['method'],
-                   args=(params),
+                   args=(params, param_profile, value, p0_to_pass),
                    options={'disp': True},
-                   bounds=[boundary for key, boundary in boundaries.items()])
+                   bounds=[boundary for key, boundary in boundaries_to_pass.items()])
     return res.x
 
 
@@ -275,76 +307,52 @@ def scan_boundary(boundaries, params, destination_folder, param_profile):
     global RMSE_ACH
     global RMSE_AP
 
-    optimized = {
-        'profile': [],
-        'cost': [],
-        'value': [],
-        'trial': [],
-        'method': [],
-        'beta_CHMA': [],
-        'beta_CHNA': [],
-        'theta_ACH': [],
-        'beta_MANDA': [],
-        'lamb_ITMNDN': [],
-        'alpha_ITMNDN': [],
-        'Pmax_APE': [],
-        'Pmin_APE': [],
-        'rdistress': [],
-        'w_gauss_min': [],
-        'rinduce_peak': [],
-        'rinduce': [],
-        'r_AP': [],
-        'r_ITM': [],
-        'r_ITMpeak': [],
-        'r_NDN': [],
-        'lamb_MANDN': [],
-        'lamb_MANDA': [],
-        'mu_NDA': [],
-        'Keq_CH': [],
-        'r_Nhomeo': [],
-        'Pmax_NR': []
-    }
+    optimized = OrderedDict()
+    optimized['profile'] = []
+    optimized['cost'] = []
+    optimized['value'] = []
+    optimized['trial'] = []
+    optimized['method'] = []
+    optimized['beta_CHMA'] = []
+    optimized['beta_CHNA'] = []
+    optimized['theta_ACH'] = []
+    optimized['beta_MANDA'] = []
+    optimized['lamb_ITMNDN'] = []
+    optimized['alpha_ITMNDN'] = []
+    optimized['Pmax_APE'] = []
+    optimized['Pmin_APE'] = []
+    optimized['rdistress'] = []
+    optimized['w_gauss_min'] = []
+    optimized['rinduce_peak'] = []
+    optimized['rinduce'] = []
+    optimized['r_AP'] = []
+    optimized['r_ITM'] = []
+    optimized['r_ITMpeak'] = []
+    optimized['r_NDN'] = []
+    optimized['lamb_MANDN'] = []
+    optimized['lamb_MANDA'] = []
+    optimized['mu_NDA'] = []
+    optimized['Keq_CH'] = []
+    optimized['r_Nhomeo'] = []
+    optimized['Pmax_NR'] = []
 
     # for key, boundary in tqdm(boundaries.items(), desc="boundary loop"):
 
     interval = np.linspace(boundaries[param_profile][0], boundaries[param_profile][1], params['interval'])
     for trial in tqdm(range(params['trials']), desc="trial loop"):
         for value in tqdm(interval, desc="interval loop"):
-            p0 = get_initial_params(params, trial)  # sets new combinations of parameters
-            p0 = set_value(param_profile, value, p0)
-
-            beta_CHMA, beta_CHNA, theta_ACH, beta_MANDA, lamb_ITMNDN, alpha_ITMNDN, Pmax_APE, Pmin_APE, rdistress, \
-            w_gauss_min, rinduce_peak, rinduce, r_ITM, r_ITMpeak, r_NDN, r_AP, lamb_MANDN, lamb_MANDA, mu_NDA, \
-            Keq_CH, r_Nhomeo, Pmax_NR = optimize_params(boundaries, p0, params)
-
+            p0_complete = get_initial_params(params, trial)  # sets new combinations of parameters
+            p0_to_pass = get_p0_to_pass(param_profile, p0_complete)
+            res = optimize_params(boundaries, params, p0_to_pass, param_profile, value)
+            res_dic = dict(zip(list(p0_to_pass.keys()), res))
             optimized['profile'].append(param_profile)
             optimized['value'].append(value)
             optimized['cost'].append(RMSE_CH + RMSE_ACH + RMSE_AP)
             optimized['trial'].append(trial)
             optimized['method'].append(params['method'])
-            optimized['beta_CHMA'].append(beta_CHMA)
-            optimized['beta_CHNA'].append(beta_CHNA)
-            optimized['theta_ACH'].append(theta_ACH)
-            optimized['beta_MANDA'].append(beta_MANDA)
-            optimized['lamb_ITMNDN'].append(lamb_ITMNDN)
-            optimized['alpha_ITMNDN'].append(alpha_ITMNDN)
-            optimized['Pmax_APE'].append(Pmax_APE)
-            optimized['Pmin_APE'].append(Pmin_APE)
-            optimized['rdistress'].append(rdistress)
-            optimized['w_gauss_min'].append(w_gauss_min)
-            optimized['rinduce_peak'].append(rinduce_peak)
-            optimized['rinduce'].append(rinduce)
-            optimized['r_ITM'].append(r_ITM)
-            optimized['r_ITMpeak'].append(r_ITMpeak)
-            optimized['r_NDN'].append(r_NDN)
-            optimized['r_AP'].append(r_AP)
-            optimized['lamb_MANDN'].append(lamb_MANDN)
-            optimized['lamb_MANDA'].append(lamb_MANDA)
-            optimized['mu_NDA'].append(mu_NDA)
-            optimized['Keq_CH'].append(Keq_CH)
-            optimized['r_Nhomeo'].append(r_Nhomeo)
-            optimized['Pmax_NR'].append(Pmax_NR)
-
+            optimized[param_profile].append(value)
+            for key, res_value in res_dic.items():
+                optimized[key].append(res_value)
             init_global()
         pickle_it(pd.DataFrame(optimized), destination_folder, params, param_profile, trial)
     return pd.DataFrame(optimized), trial
@@ -373,8 +381,15 @@ def run_experiment(methods, boundaries, destination_folder, params, param_profil
 
 
 def run_parallel(methods, boundaries, destination_folder, params, params_to_profile):
+    # PARALLEL
     Parallel(n_jobs=10)(delayed(run_experiment)(methods, boundaries, destination_folder, params, param_profile)
                         for param_profile in params_to_profile)
+
+    # NOT parallel
+    # for param_profile in params_to_profile:
+    #     print(param_profile)
+    #     run_experiment(methods, boundaries, destination_folder, params, param_profile)
+
 
 if __name__ == '__main__':
     # methods = ['L-BFGS-B', 'TNC', 'SLSQP']
@@ -382,7 +397,7 @@ if __name__ == '__main__':
     boundaries = par.get_boundaries()
     params_to_profile = [key for key, boundary in boundaries.items()]
     destination_folder = 'C:/Users/Alva/Google Drive/Alva Modeling Immune System/Innate Immunity/Journal Papers/' \
-                         'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results'
+                         'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/Likelihood'
     data_dir = destination_folder
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
@@ -391,8 +406,8 @@ if __name__ == '__main__':
               'restrict': False,
               'case': 6,
               'distribution': 'normal',
-              'interval': 30,
+              'interval': 40,
               'treatment_type': 'biap',
-              'trials': 10,
+              'trials': 5,
               }
     run_parallel(methods, boundaries, destination_folder, params, params_to_profile)

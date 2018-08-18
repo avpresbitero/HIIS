@@ -7,6 +7,7 @@ import seaborn as sns
 import pandas as pd
 import os
 import scipy.integrate as spi
+import matplotlib.pyplot as plt
 
 import Parameters as prms
 import APPIREDII_Cytokines_Parser as cyto
@@ -47,7 +48,6 @@ def vectorfield(w, t, p, params):
     step_max, r_NDN, r_ITM, ITMblood_peak, r_AP, rinduce, ITM_source_peak, ITM_source_width = p
 
     hypothesis = 0
-
     CH_delay = 20
     NDA_delay = 5. * 60.
     delay_AP = 60.
@@ -441,249 +441,249 @@ def plot(wsol, df_AP_median, case_names, timein, t_interval, df_IL6, df_IL10, pa
 
     if case >= 1:
         n = loop_fig(5)
-        sns.plt.figure(n)
-        sns.plt.plot(t, df_model['N_A'], linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Activated Neutrophils", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
+        plt.figure(n)
+        plt.plot(t, df_model['N_A'], linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Activated Neutrophils", fontsize=ts)
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
         print('... Plotting Activated Neutrophils')
-        sns.plt.savefig('result/plots/' + 'Activated_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Activated_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, df_model['ND_N'], linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Necrotic Neutrophils", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
+        plt.figure(n)
+        plt.plot(t, df_model['ND_N'], linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Necrotic Neutrophils", fontsize=ts)
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
         print('... Plotting Necrotic Neutrophils')
-        sns.plt.savefig('result/plots/' + 'Necrotic_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Necrotic_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, df_model['ND_A'], linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Apoptotic Neutrophils", fontsize=ts)
-        sns.plt.ylim((0, 25))
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
+        plt.figure(n)
+        plt.plot(t, df_model['ND_A'], linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Apoptotic Neutrophils", fontsize=ts)
+        plt.ylim((0, 25))
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
 
         print('... Plotting Apoptotic Neutrophils')
-        sns.plt.savefig('result/plots/' + 'Apoptotic_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Apoptotic_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, df_model['N_R'], linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Mature Resting Neutrophils", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
+        plt.figure(n)
+        plt.plot(t, df_model['N_R'], linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Mature Resting Neutrophils", fontsize=ts)
+        plt.hold(True)
+        plt.tick_params(labelsize=ls)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
         print('... Plotting Resting Neutrophils')
-        sns.plt.savefig('result/plots/' + 'Resting_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Resting_Neutrophils.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, (df_model['M_A']), linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("Concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Activated Macrophages", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
+        plt.figure(n)
+        plt.plot(t, (df_model['M_A']), linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("Concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Activated Macrophages", fontsize=ts)
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
         print('... Plotting Activated Macrophages')
-        sns.plt.savefig('result/plots/' + 'Activated_Macrophages.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Activated_Macrophages.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, np.log10(df_model['M_R']), linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("$log_{10}$ Concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.title("Resting Macrophages", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.tight_layout()
+        plt.figure(n)
+        plt.plot(t, np.log10(df_model['M_R']), linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("$log_{10}$ Concentration $(cells/mm^3$)", fontsize=fs)
+        plt.title("Resting Macrophages", fontsize=ts)
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
+        plt.tight_layout()
         print('... Plotting Resting Macrophages')
-        sns.plt.savefig('result/plots/' + 'Resting_Macrophages.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Resting_Macrophages.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, (np.log10(df_model['ITMtissue'])), linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("$log_{10}$ Concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.title("ITM in Tissue", fontsize=ts)
+        plt.figure(n)
+        plt.plot(t, (np.log10(df_model['ITMtissue'])), linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("$log_{10}$ Concentration $(cells/mm^3$)", fontsize=fs)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.tick_params(labelsize=ls)
+        plt.title("ITM in Tissue", fontsize=ts)
         print('... Plotting ITMs in Tissue')
-        sns.plt.savefig('result/plots/' + 'ITMS_Tissue.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'ITMS_Tissue.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, (df_model['ITMblood']), linewidth=lw, label=case_label, ls='-', color=color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("Concentration $(cells/mm^3$)", fontsize=fs)
-        sns.plt.hold(True)
-        sns.plt.legend(loc='best', fontsize=lfs)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.title("Plasma ITM", fontsize=ts)
+        plt.figure(n)
+        plt.plot(t, (df_model['ITMblood']), linewidth=lw, label=case_label, ls='-', color=color)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("Concentration $(cells/mm^3$)", fontsize=fs)
+        plt.hold(True)
+        plt.legend(loc='best', fontsize=lfs)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.tick_params(labelsize=ls)
+        plt.title("Plasma ITM", fontsize=ts)
         print('... Plotting ITMs in Plasma')
-        sns.plt.savefig('result/plots/' + 'ITMS_Plasma.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'ITMS_Plasma.png', format='png', dpi=500, bbox_inches='tight')
 
     if case >= 2:
         if case_label != 'bIAP':
-            sns.plt.figure(0)
-            sns.plt.plot(df_model['Time'], df_model['CH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
+            plt.figure(0)
+            plt.plot(df_model['Time'], df_model['CH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
             if case_label == 'Placebo':
-                sns.plt.errorbar(x=list(df_CH_plc['time']), y=list(df_CH_plc['median']), yerr=list(df_CH_plc['mad']),
+                plt.errorbar(x=list(df_CH_plc['time']), y=list(df_CH_plc['median']), yerr=list(df_CH_plc['mad']),
                                  alpha=.5, marker='o', color='#e41a1c', label='Data Median', ms=15)
-            sns.plt.xlim((0,prms._stoptime/60.))
-            sns.plt.ylim((0, 5 * 10 ** 7))
-            sns.plt.xlabel("Hours After Operation", fontsize=fs)
-            sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-            sns.plt.title("Pro-Inflammatory Cytokines", fontsize=ts)
-            sns.plt.tick_params(labelsize=ls)
-            sns.plt.hold(True)
-            sns.plt.legend(loc='best', fontsize=lfs)
-            sns.plt.xlim((0, prms._stoptime / 60.))
+            plt.xlim((0,prms._stoptime/60.))
+            plt.ylim((0, 5 * 10 ** 7))
+            plt.xlabel("Hours After Operation", fontsize=fs)
+            plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+            plt.title("Pro-Inflammatory Cytokines", fontsize=ts)
+            plt.tick_params(labelsize=ls)
+            plt.hold(True)
+            plt.legend(loc='best', fontsize=lfs)
+            plt.xlim((0, prms._stoptime / 60.))
             print('... Plotting Data for IL6')
-            sns.plt.savefig('result/plots/' + 'Placebo_IL6.png', format='png', dpi=500, bbox_inches='tight')
+            plt.savefig('result/plots/' + 'Placebo_IL6.png', format='png', dpi=500, bbox_inches='tight')
 
-            sns.plt.figure(1)
-            sns.plt.plot(df_model['Time'], df_model['ACH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
+            plt.figure(1)
+            plt.plot(df_model['Time'], df_model['ACH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
             if case_label == 'Placebo':
-                sns.plt.errorbar(list(df_ACH_plc['time']), list(df_ACH_plc['median']), yerr = list(df_ACH_plc['mad']),
+                plt.errorbar(list(df_ACH_plc['time']), list(df_ACH_plc['median']), yerr = list(df_ACH_plc['mad']),
                                  alpha=.5, linewidth=1.5, marker='o',color='#e41a1c', label='Data Median', ms=15)
-            sns.plt.xlim((0, prms._stoptime/60.))
-            sns.plt.ylim((0, 5 * 10 ** 7))
-            sns.plt.xlabel("Hours After Operation", fontsize=fs)
-            sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-            sns.plt.title("Anti-Inflammatory Cytokines", fontsize=ts)
-            sns.plt.legend(loc='best', fontsize=15)
-            sns.plt.tick_params(labelsize=ls)
-            sns.plt.hold(True)
-            sns.plt.legend(fontsize=lfs)
+            plt.xlim((0, prms._stoptime/60.))
+            plt.ylim((0, 5 * 10 ** 7))
+            plt.xlabel("Hours After Operation", fontsize=fs)
+            plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+            plt.title("Anti-Inflammatory Cytokines", fontsize=ts)
+            plt.legend(loc='best', fontsize=15)
+            plt.tick_params(labelsize=ls)
+            plt.hold(True)
+            plt.legend(fontsize=lfs)
             print('... Plotting Data for IL10')
-            sns.plt.savefig('result/plots/' + 'Placebo_IL10.png', format='png', dpi=500, bbox_inches='tight')
+            plt.savefig('result/plots/' + 'Placebo_IL10.png', format='png', dpi=500, bbox_inches='tight')
 
         if case_label != 'Placebo':
-            sns.plt.figure(3)
-            sns.plt.plot(df_model['Time'], df_model['CH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
+            plt.figure(3)
+            plt.plot(df_model['Time'], df_model['CH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
             if case_label == 'bIAP':
-                sns.plt.errorbar(x=list(df_CH_biap['time']), y=list(df_CH_biap['median']),
+                plt.errorbar(x=list(df_CH_biap['time']), y=list(df_CH_biap['median']),
                                  yerr=list(df_CH_biap['mad']), alpha=.5, marker='o', color='#e41a1c',
                                  label='Data Median', ms=15)
-            sns.plt.xlim((0,prms._stoptime/60.))
-            sns.plt.ylim((0, 5*10**7))
-            sns.plt.xlabel("Hours After Operation", fontsize=fs)
-            sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-            sns.plt.title("Pro-Inflammatory Cytokines", fontsize=ts)
-            sns.plt.tick_params(labelsize=ls)
-            sns.plt.hold(True)
-            sns.plt.legend(fontsize=lfs)
+            plt.xlim((0,prms._stoptime/60.))
+            plt.ylim((0, 5*10**7))
+            plt.xlabel("Hours After Operation", fontsize=fs)
+            plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+            plt.title("Pro-Inflammatory Cytokines", fontsize=ts)
+            plt.tick_params(labelsize=ls)
+            plt.hold(True)
+            plt.legend(fontsize=lfs)
             print('... Plotting Data for IL6')
-            sns.plt.savefig('result/plots/' + 'bIAP_IL6.png', format='png', dpi=500, bbox_inches='tight')
+            plt.savefig('result/plots/' + 'bIAP_IL6.png', format='png', dpi=500, bbox_inches='tight')
 
-            sns.plt.figure(4)
-            sns.plt.plot(df_model['Time'], df_model['ACH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
+            plt.figure(4)
+            plt.plot(df_model['Time'], df_model['ACH'], linewidth=lw, label="Model", ls='-', color="#377eb8")
             if case_label == 'bIAP':
-                sns.plt.errorbar(x=list(df_ACH_biap['time']), y=list(df_ACH_biap['median']), yerr=list(df_ACH_biap['mad']),
+                plt.errorbar(x=list(df_ACH_biap['time']), y=list(df_ACH_biap['median']), yerr=list(df_ACH_biap['mad']),
                                  alpha=.5, marker='o', color='#e41a1c', label='Data Median', ms=15)
-            sns.plt.xlim((0, prms._stoptime/60.))
-            sns.plt.ylim((0, 5 * 10 ** 7))
-            sns.plt.xlabel("Hours After Operation", fontsize=fs)
-            sns.plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
-            sns.plt.title("Anti-Inflammatory Cytokines", fontsize=ts)
-            sns.plt.tick_params(labelsize=ls)
-            sns.plt.hold(True)
-            sns.plt.legend(fontsize=lfs)
+            plt.xlim((0, prms._stoptime/60.))
+            plt.ylim((0, 5 * 10 ** 7))
+            plt.xlabel("Hours After Operation", fontsize=fs)
+            plt.ylabel("concentration $(cells/mm^3$)", fontsize=fs)
+            plt.title("Anti-Inflammatory Cytokines", fontsize=ts)
+            plt.tick_params(labelsize=ls)
+            plt.hold(True)
+            plt.legend(fontsize=lfs)
             print('... Plotting Data for IL10')
-            sns.plt.savefig('result/plots/' + 'bIAP_IL10.png', format='png', dpi=500, bbox_inches='tight')
+            plt.savefig('result/plots/' + 'bIAP_IL10.png', format='png', dpi=500, bbox_inches='tight')
 
     if case >= 5:
         n = loop_fig(n)
         if case == 5:
-            sns.plt.figure(n)
-            sns.plt.errorbar(x=list(df_AP_placebo_median['time']),
+            plt.figure(n)
+            plt.errorbar(x=list(df_AP_placebo_median['time']),
                              y=list(df_AP_placebo_median['median']),
                              yerr=list(df_AP_placebo_median['mad']),
                              alpha=.5, marker='o', color='#e41a1c', label='Data Median', ms=15)
-            sns.plt.plot((t), reverse_AP(df_model['AP_Eblood'], 'endo', 'blood'), '-', linewidth=lw,
+            plt.plot((t), reverse_AP(df_model['AP_Eblood'], 'endo', 'blood'), '-', linewidth=lw,
                          label='Model', color="#377eb8")
-            sns.plt.xlabel("Hours After Operation", fontsize=fs)
-            sns.plt.ylabel('Alkaline Phosphatase in Blood ($IU/L$)', fontsize=fs)
-            sns.plt.title("Alkaline Phosphatase", fontsize=ts)
-            sns.plt.xlim((0, prms._stoptime/60.))
-            sns.plt.ylim((0, 150))
-            sns.plt.tick_params(labelsize=ls)
-            sns.plt.legend(fontsize=lfs)
+            plt.xlabel("Hours After Operation", fontsize=fs)
+            plt.ylabel('Alkaline Phosphatase in Blood ($IU/L$)', fontsize=fs)
+            plt.title("Alkaline Phosphatase", fontsize=ts)
+            plt.xlim((0, prms._stoptime/60.))
+            plt.ylim((0, 150))
+            plt.tick_params(labelsize=ls)
+            plt.legend(fontsize=lfs)
             print('... Plotting Placebo Experiment')
             try:
-                sns.plt.savefig('result/plots/placebo.png', dpi=300, bbox_inches='tight')
+                plt.savefig('result/plots/placebo.png', dpi=300, bbox_inches='tight')
             except:
                 os.makedirs('result')
-                sns.plt.savefig('result/plots/placebo.png', dpi=300, bbox_inches='tight')
+                plt.savefig('result/plots/placebo.png', dpi=300, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, reverse_AP(df_model['AP_Etissue'],'endo','tissue'), linewidth=lw, label=case_label,
+        plt.figure(n)
+        plt.plot(t, reverse_AP(df_model['AP_Etissue'],'endo','tissue'), linewidth=lw, label=case_label,
                      ls='-', color = color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration ($IU/L$)", fontsize=fs)
-        sns.plt.title("Endogenous AP in Tissue", fontsize=ts)
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.hold(True)
-        sns.plt.legend(fontsize=lfs)
-        sns.plt.tight_layout()
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration ($IU/L$)", fontsize=fs)
+        plt.title("Endogenous AP in Tissue", fontsize=ts)
+        plt.tick_params(labelsize=ls)
+        plt.hold(True)
+        plt.legend(fontsize=lfs)
+        plt.tight_layout()
         print('... Plotting Endogenous AP in Tissue')
-        sns.plt.savefig('result/plots/' + 'Endo_AP_Tissue.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Endo_AP_Tissue.png', format='png', dpi=500, bbox_inches='tight')
 
     if case >= 6:
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, reverse_AP(df_model['AP_Sblood'], 'supp', 'blood') , linewidth=lw, label=case_label,
+        plt.figure(n)
+        plt.plot(t, reverse_AP(df_model['AP_Sblood'], 'supp', 'blood') , linewidth=lw, label=case_label,
                      ls='-', color=color)
-        sns.plt.ylabel("concentration ($IU/L$)", fontsize=fs)
-        sns.plt.title("Supplemented AP", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(fontsize=lfs)
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.tight_layout()
+        plt.ylabel("concentration ($IU/L$)", fontsize=fs)
+        plt.title("Supplemented AP", fontsize=ts)
+        plt.hold(True)
+        plt.legend(fontsize=lfs)
+        plt.tick_params(labelsize=ls)
+        plt.tight_layout()
         print('... Plotting Supplemented AP in Blood')
-        sns.plt.savefig('result/plots/' + 'Supp_AP_blood.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Supp_AP_blood.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.plot(t, reverse_AP(df_model['AP_Stissue'], 'supp', 'tissue'), linewidth=lw, label=case_label,
+        plt.figure(n)
+        plt.plot(t, reverse_AP(df_model['AP_Stissue'], 'supp', 'tissue'), linewidth=lw, label=case_label,
                      ls='-', color = color)
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel("concentration ($IU/L$)", fontsize=fs)
-        sns.plt.title("Supplemented AP in Tissue", fontsize=ts)
-        sns.plt.hold(True)
-        sns.plt.legend(fontsize=lfs)
-        sns.plt.tick_params(labelsize=ls)
-        sns.plt.tight_layout()
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel("concentration ($IU/L$)", fontsize=fs)
+        plt.title("Supplemented AP in Tissue", fontsize=ts)
+        plt.hold(True)
+        plt.legend(fontsize=lfs)
+        plt.tick_params(labelsize=ls)
+        plt.tight_layout()
         print('... Plotting Supplemented AP in Tissue')
-        sns.plt.savefig('result/plots/' + 'Supp_AP_Tissue.png', format='png', dpi=500, bbox_inches='tight')
+        plt.savefig('result/plots/' + 'Supp_AP_Tissue.png', format='png', dpi=500, bbox_inches='tight')
 
         n = loop_fig(n)
-        sns.plt.figure(n)
-        sns.plt.errorbar(x=list(df_AP_supplemented_median['time']),
+        plt.figure(n)
+        plt.errorbar(x=list(df_AP_supplemented_median['time']),
                          y=list(df_AP_supplemented_median['median']),
                          yerr=list(df_AP_supplemented_median['mad']),
                          alpha=.5,
@@ -691,25 +691,25 @@ def plot(wsol, df_AP_median, case_names, timein, t_interval, df_IL6, df_IL10, pa
                          color='#e41a1c',
                          label='Data Median',
                          ms=15)
-        sns.plt.plot(t, reverse_AP(df_model['AP_Eblood'], 'endo', 'blood') + reverse_AP(df_model['AP_Sblood'], 'supp', 'blood'), '-',
+        plt.plot(t, reverse_AP(df_model['AP_Eblood'], 'endo', 'blood') + reverse_AP(df_model['AP_Sblood'], 'supp', 'blood'), '-',
                      linewidth=lw,
                      label='Model',
                      color="#377eb8")
-        sns.plt.xlabel("Hours After Operation", fontsize=fs)
-        sns.plt.ylabel('Alkaline Phosphatase in Blood ($IU/L$)', fontsize=fs)
-        sns.plt.title("Alkaline Phosphatase", fontsize=ts)
-        sns.plt.xlim((0, prms._stoptime / 60.))
-        sns.plt.ylim((0, 800))
-        sns.plt.legend(fontsize=lfs)
-        sns.plt.tick_params(labelsize=ls)
+        plt.xlabel("Hours After Operation", fontsize=fs)
+        plt.ylabel('Alkaline Phosphatase in Blood ($IU/L$)', fontsize=fs)
+        plt.title("Alkaline Phosphatase", fontsize=ts)
+        plt.xlim((0, prms._stoptime / 60.))
+        plt.ylim((0, 800))
+        plt.legend(fontsize=lfs)
+        plt.tick_params(labelsize=ls)
         print('... Plotting Supplemented AP Experiment')
         try:
-            sns.plt.savefig('result/plots/bIAP.png', dpi=300, bbox_inches='tight')
+            plt.savefig('result/plots/bIAP.png', dpi=300, bbox_inches='tight')
         except:
             os.makedirs('result')
-            sns.plt.savefig('result/plots/bIAP.png', dpi=300, bbox_inches='tight')
-        #sns.plt.close('all')
-    # sns.plt.show()
+            plt.savefig('result/plots/bIAP.png', dpi=300, bbox_inches='tight')
+        #plt.close('all')
+    # plt.show()
 
 
 if __name__ == "__main__":
@@ -800,29 +800,29 @@ if __name__ == "__main__":
               'restrict': False}
 
     # CALIBRATED USING SUPPLEMENTED EXPERIMENT
-    df_params = pd.read_csv('result/optimize/params/' + params['h'] + '_' + bound + norm + step + '_best_params.txt', sep='\t')
-    beta_CHNA = df_params['beta_CHNA'].values[0]
-    beta_CHMA = df_params['beta_CHMA'].values[0]
-    theta_ACH = df_params['theta_ACH'].values[0]
-    beta_MANDA = df_params['beta_MANDA'].values[0]
-    Pmin_APE = df_params['Pmin_APE'].values[0]
-    Pmax_APE = df_params['Pmax_APE'].values[0]
-    rdistress = df_params['rflush'].values[0]
-    w_gauss_min = df_params['gauss_min'].values[0]
-    rinduce_peak = df_params['rinduce_peak'].values[0]
-    lamb_ITMNDN = df_params['lamb_ITMNDN'].values[0]
-    alpha_ITMNDN = df_params['alpha_ITMNDN'].values[0]
-    r_NDN = df_params['r_NDN'].values[0]
-    r_ITM = df_params['r_ITM'].values[0]
-    r_ITMpeak = df_params['r_ITMpeak'].values[0]
-    r_AP = df_params['r_AP'].values[0]
-    Keq_CH = df_params['Keq_CH'].values[0]
-    rinduce = df_params['rinduce'].values[0]
-    lamb_MANDN = df_params['lamb_MANDN'].values[0]
-    mu_NDA = df_params['mu_NDA'].values[0]
-    lamb_MANDA = df_params['lamb_MANDA'].values[0]
-    r_Nhomeo = df_params['r_Nhomeo'].values[0]
-    Pmax_NR = df_params['Pmax_NR'].values[0]
+    # df_params = pd.read_csv('result/optimize/params/' + params['h'] + '_' + bound + norm + step + '_best_params.txt', sep='\t')
+    # beta_CHNA = df_params['beta_CHNA'].values[0]
+    # beta_CHMA = df_params['beta_CHMA'].values[0]
+    # theta_ACH = df_params['theta_ACH'].values[0]
+    # beta_MANDA = df_params['beta_MANDA'].values[0]
+    # Pmin_APE = df_params['Pmin_APE'].values[0]
+    # Pmax_APE = df_params['Pmax_APE'].values[0]
+    # rdistress = df_params['rflush'].values[0]
+    # w_gauss_min = df_params['gauss_min'].values[0]
+    # rinduce_peak = df_params['rinduce_peak'].values[0]
+    # lamb_ITMNDN = df_params['lamb_ITMNDN'].values[0]
+    # alpha_ITMNDN = df_params['alpha_ITMNDN'].values[0]
+    # r_NDN = df_params['r_NDN'].values[0]
+    # r_ITM = df_params['r_ITM'].values[0]
+    # r_ITMpeak = df_params['r_ITMpeak'].values[0]
+    # r_AP = df_params['r_AP'].values[0]
+    # Keq_CH = df_params['Keq_CH'].values[0]
+    # rinduce = df_params['rinduce'].values[0]
+    # lamb_MANDN = df_params['lamb_MANDN'].values[0]
+    # mu_NDA = df_params['mu_NDA'].values[0]
+    # lamb_MANDA = df_params['lamb_MANDA'].values[0]
+    # r_Nhomeo = df_params['r_Nhomeo'].values[0]
+    # Pmax_NR = df_params['Pmax_NR'].values[0]
 
     # TODO put reference for interval values here
 
@@ -848,6 +848,75 @@ if __name__ == "__main__":
     Keq_CH = 2e4
     r_Nhomeo = 1e-4
     Pmax_NR = 6e-3
+
+    beta_CHMA = 0.00144865
+    beta_CHNA = 0.0728965
+    theta_ACH =9.99127e-11
+    beta_MANDA=85.098
+    lamb_ITMNDN=1.1319e-06
+    alpha_ITMNDN=1195.21
+    Pmax_APE=0.00296008
+    Pmin_APE=0.00019821
+    rdistress=1.51824e+06
+    w_gauss_min=5.19623e+07
+    rinduce_peak=6.2069
+    rinduce=0.0393059
+    r_AP=0.0509543
+    r_ITM=0.363028
+    r_ITMpeak=4.51807e+12
+    r_NDN=0.0112398
+    lamb_MANDN=4.44231e-06
+    lamb_MANDA=3.40507e-05
+    mu_NDA=13.1006
+    Keq_CH=21588.1
+    r_Nhomeo=8.65092e-05
+    Pmax_NR=0.00542889
+
+    # beta_CHMA = 4.86717820e-01
+    # beta_CHNA = 6.26717820e-01
+    # theta_ACH = 6.26717820e-01
+    # beta_MANDA = 6.26717820e+03
+    # lamb_ITMNDN = 6.26717820e-01
+    # alpha_ITMNDN = 6.26717820e+03
+    # Pmax_APE = 6.26717820e-01
+    # Pmin_APE = 6.26717820e-02
+    # rdistress = 6.26717820e+08
+    # w_gauss_min = 6.26717820e+08
+    # rinduce_peak = 1.88015346e+01
+    # rinduce = 6.26717820e-01
+    # r_AP = 6.26717820e-01
+    # r_ITM = 6.26717820e-01
+    # r_ITMpeak = 6.26717820e+13
+    # r_NDN = 6.26717820e-01
+    # lamb_MANDN = 6.26717820e-01
+    # lamb_MANDA = 6.26717820e-01
+    # mu_NDA = 6.26717820e+03
+    # Keq_CH = 6.26717820e+06
+    # r_Nhomeo = 6.26717820e-01
+    # Pmax_NR = 6.26717820e-01
+
+    beta_CHMA = 0.000926107
+    beta_CHNA = 0.0420278
+    theta_ACH = 1.04599e-10
+    beta_MANDA = 117.866
+    lamb_ITMNDN = 1.05086e-06
+    alpha_ITMNDN = 1014.28
+    Pmax_APE = 0.00209143
+    Pmin_APE = 0.000196869
+    rdistress = 2.35268e+06
+    w_gauss_min = 9.08106e+07
+    rinduce_peak = 19.6552
+    rinduce = 0.0405427
+    r_AP = 0.0399421
+    r_ITM = 0.689231
+    r_ITMpeak = 8.59713e+12
+    r_NDN = 0.00837989
+    lamb_MANDN = 7.10724e-06
+    lamb_MANDA = 2.59196e-05
+    mu_NDA = 25.7168
+    Keq_CH = 27197
+    r_Nhomeo = 3.94832e-05
+    Pmax_NR = 0.00921788
 
     r_APhomeo = Pmin_APE + prms.mu_APE
 
@@ -916,4 +985,6 @@ if __name__ == "__main__":
         w0 = get_init(w, params)
 
         t, wsol = solve(p, w0, t, params)
+        for t1, w1 in zip(t, wsol):
+            print(w1[10])
         plot(wsol, df_AP_median, case_names, time, t, df_IL6, df_IL10, params)
