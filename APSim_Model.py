@@ -799,33 +799,6 @@ if __name__ == "__main__":
     params = {'h': 'h4',
               'restrict': False}
 
-    # CALIBRATED USING SUPPLEMENTED EXPERIMENT
-    # df_params = pd.read_csv('result/optimize/params/' + params['h'] + '_' + bound + norm + step + '_best_params.txt', sep='\t')
-    # beta_CHNA = df_params['beta_CHNA'].values[0]
-    # beta_CHMA = df_params['beta_CHMA'].values[0]
-    # theta_ACH = df_params['theta_ACH'].values[0]
-    # beta_MANDA = df_params['beta_MANDA'].values[0]
-    # Pmin_APE = df_params['Pmin_APE'].values[0]
-    # Pmax_APE = df_params['Pmax_APE'].values[0]
-    # rdistress = df_params['rflush'].values[0]
-    # w_gauss_min = df_params['gauss_min'].values[0]
-    # rinduce_peak = df_params['rinduce_peak'].values[0]
-    # lamb_ITMNDN = df_params['lamb_ITMNDN'].values[0]
-    # alpha_ITMNDN = df_params['alpha_ITMNDN'].values[0]
-    # r_NDN = df_params['r_NDN'].values[0]
-    # r_ITM = df_params['r_ITM'].values[0]
-    # r_ITMpeak = df_params['r_ITMpeak'].values[0]
-    # r_AP = df_params['r_AP'].values[0]
-    # Keq_CH = df_params['Keq_CH'].values[0]
-    # rinduce = df_params['rinduce'].values[0]
-    # lamb_MANDN = df_params['lamb_MANDN'].values[0]
-    # mu_NDA = df_params['mu_NDA'].values[0]
-    # lamb_MANDA = df_params['lamb_MANDA'].values[0]
-    # r_Nhomeo = df_params['r_Nhomeo'].values[0]
-    # Pmax_NR = df_params['Pmax_NR'].values[0]
-
-    # TODO put reference for interval values here
-
     beta_CHMA = 7.8e-4
     beta_CHNA = 4.8e-2
     theta_ACH = 1e-10
@@ -848,75 +821,6 @@ if __name__ == "__main__":
     Keq_CH = 2e4
     r_Nhomeo = 1e-4
     Pmax_NR = 6e-3
-
-    beta_CHMA = 0.00144865
-    beta_CHNA = 0.0728965
-    theta_ACH =9.99127e-11
-    beta_MANDA=85.098
-    lamb_ITMNDN=1.1319e-06
-    alpha_ITMNDN=1195.21
-    Pmax_APE=0.00296008
-    Pmin_APE=0.00019821
-    rdistress=1.51824e+06
-    w_gauss_min=5.19623e+07
-    rinduce_peak=6.2069
-    rinduce=0.0393059
-    r_AP=0.0509543
-    r_ITM=0.363028
-    r_ITMpeak=4.51807e+12
-    r_NDN=0.0112398
-    lamb_MANDN=4.44231e-06
-    lamb_MANDA=3.40507e-05
-    mu_NDA=13.1006
-    Keq_CH=21588.1
-    r_Nhomeo=8.65092e-05
-    Pmax_NR=0.00542889
-
-    # beta_CHMA = 4.86717820e-01
-    # beta_CHNA = 6.26717820e-01
-    # theta_ACH = 6.26717820e-01
-    # beta_MANDA = 6.26717820e+03
-    # lamb_ITMNDN = 6.26717820e-01
-    # alpha_ITMNDN = 6.26717820e+03
-    # Pmax_APE = 6.26717820e-01
-    # Pmin_APE = 6.26717820e-02
-    # rdistress = 6.26717820e+08
-    # w_gauss_min = 6.26717820e+08
-    # rinduce_peak = 1.88015346e+01
-    # rinduce = 6.26717820e-01
-    # r_AP = 6.26717820e-01
-    # r_ITM = 6.26717820e-01
-    # r_ITMpeak = 6.26717820e+13
-    # r_NDN = 6.26717820e-01
-    # lamb_MANDN = 6.26717820e-01
-    # lamb_MANDA = 6.26717820e-01
-    # mu_NDA = 6.26717820e+03
-    # Keq_CH = 6.26717820e+06
-    # r_Nhomeo = 6.26717820e-01
-    # Pmax_NR = 6.26717820e-01
-
-    beta_CHMA = 0.000926107
-    beta_CHNA = 0.0420278
-    theta_ACH = 1.04599e-10
-    beta_MANDA = 117.866
-    lamb_ITMNDN = 1.05086e-06
-    alpha_ITMNDN = 1014.28
-    Pmax_APE = 0.00209143
-    Pmin_APE = 0.000196869
-    rdistress = 2.35268e+06
-    w_gauss_min = 9.08106e+07
-    rinduce_peak = 19.6552
-    rinduce = 0.0405427
-    r_AP = 0.0399421
-    r_ITM = 0.689231
-    r_ITMpeak = 8.59713e+12
-    r_NDN = 0.00837989
-    lamb_MANDN = 7.10724e-06
-    lamb_MANDA = 2.59196e-05
-    mu_NDA = 25.7168
-    Keq_CH = 27197
-    r_Nhomeo = 3.94832e-05
-    Pmax_NR = 0.00921788
 
     r_APhomeo = Pmin_APE + prms.mu_APE
 
@@ -985,6 +889,4 @@ if __name__ == "__main__":
         w0 = get_init(w, params)
 
         t, wsol = solve(p, w0, t, params)
-        for t1, w1 in zip(t, wsol):
-            print(w1[10])
         plot(wsol, df_AP_median, case_names, time, t, df_IL6, df_IL10, params)

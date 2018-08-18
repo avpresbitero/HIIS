@@ -8,7 +8,6 @@ import scipy.stats as st
 
 from collections import OrderedDict
 from scipy.signal import savgol_filter
-from operator import itemgetter
 
 import Parameters as par
 
