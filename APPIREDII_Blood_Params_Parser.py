@@ -207,8 +207,8 @@ def get_data(german_hospital_file, dutch_hospital_file, treatment_file, paramete
 
 
 if __name__ == "__main__":
-    german_hospital_file = 'data/APPIREDII/zol.be.visits.txt'
-    dutch_hospital_file = 'data/APPIREDII/20130725appired-Eindhoven.txt'
+    german_hospital_file = 'data/APPIREDII/Hospital2.txt'
+    dutch_hospital_file = 'data/APPIREDII/Hospital1.txt'
     treatment_file = 'data/APPIREDII/segregation.txt'
 
     parameter_name = 'AlkFosf'

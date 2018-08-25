@@ -25,8 +25,8 @@ def get_label_dictionary():
     params['beta_MANDA'] = r'$\beta_{NDA|MA}$'
     params['lamb_ITMNDN'] = r'$\lambda_{ITMNDN}$'
     params['alpha_ITMNDN'] = r'$\alpha_{ITMNDN}$'
-    params['Pmax_APE'] = r'$P_{APE}^{max}$'
-    params['Pmin_APE'] = r'$P_{APE}^{min}$'
+    params['Pmax_APE'] = r'$P_{AP}^{max}$'
+    params['Pmin_APE'] = r'$P_{AP}^{min}$'
     params['rdistress'] = r'$r_{distress}$'
     params['w_gauss_min'] = r'$w$'
     params['rinduce_peak'] = r'$r_{inducepeak}$'
@@ -190,58 +190,56 @@ def pick(result):
     return pick_result
 
 
+def get_order_params(df):
+    sensitive = []
+    not_sensitive =[]
+    for column in df:
+        result = (df[column])
+        if max(result) >= 0.05:
+            sensitive.append(column)
+        else:
+            not_sensitive.append(column)
+    return sensitive+not_sensitive
+
+
 def plot(df, project_dir, method, param_name, label_dic, title_dic):
     sns.set_style("ticks")
     sns.set_style({"xtick.direction": "in", "ytick.direction": "in", "axes.linewidth": 2.5})
 
     lw = 3
     ls = 20
-    fs = 25
-    ms = 20
-    lfs = 25
-    ts = 30
-    markers = ['v', '<', '>', '^', '*', 'v', '<', '>', '^', '*', 'o', '.', 'h', 'p', 'H', ".", ",",
-               "o", "v", "^", "8", "s", "p", "P", "*", "h", "H",
-               "+", "x", "X", "D", "d", "|", "_"]
+    fs = 20
     line_styles = ['-', '--', '-.', ':']
-    colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']
     count = 0
     count_important = 0
     sns.set(style="white")
     df.fillna(0, inplace=True)
     increment = 0
-    for column in df:
-        marker = markers[count]
-        # color = colors[count % len(colors)]
+    columns = get_order_params(df)
+    for column in columns:
         result = (df[column])
         time = [(i/len(result))*36. for i in range(len(result))]
         if max(result) >= 0.05:
             line_style = line_styles[count_important % len(line_styles)]
             color = '#e41a1c'
-            plt.plot(time, result, label=label_dic[column], ls=line_style, linewidth=5, color=color, alpha=1-increment)
+            plt.plot(time, result, label=label_dic[column], ls=line_style, linewidth=lw, color=color, alpha=1-increment)
             increment += 0.1
             count_important += 1
-        elif column == 'rinduce' or column == 'rinduce_peak':
-            line_style = line_styles[count_important % len(line_styles)]
-            color = '#377eb8'
-            plt.plot(time, result, label=label_dic[column], ls=line_style, linewidth=5, color=color, alpha=1-increment)
-            increment += 0.1
-            count_important += 1
-        # else:
-        #     color = '#999999'
-        #     plt.plot(time, result, ls='-', linewidth=lw, color=color, alpha=0.4, label='')
+        else:
+            color = '#999999'
+            if count == 21:
+                plt.plot(time, result, ls='-', label='Others', linewidth=lw, color=color, alpha=0.4)
+            else:
+                plt.plot(time, result, ls='-', linewidth=lw, color=color, alpha=0.4, label='')
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': ls}, frameon=True)
         plt.plot(time, [0.05]*len(time), ls='-', linewidth=lw, color='black')
         plt.xlabel("Hours After Operation", fontsize=fs)
         plt.ylabel('Sensitivity Index', fontsize=fs)
         plt.title(title_dic[param_name], fontsize=fs)
-        plt.xlim((0, 5))
-        # plt.xlim((0, 36))
+        plt.xlim((0, 36))
         plt.tick_params(labelsize=ls)
-        # plt.hold(True)
         plt.savefig(project_dir + '/' + method + '_' + param_name + '_SA.png', dpi=500, bbox_inches='tight')
         count += 1
-    # plt.show()
 
 
 def do_analysis(params, project_dir, pickle_file, method):
@@ -255,16 +253,13 @@ def do_analysis(params, project_dir, pickle_file, method):
 
 def main():
     project_dir = 'C:/Users/Alva/Google Drive/Alva Modeling Immune System/Innate Immunity/Journal Papers/' \
-                  'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/sensitivity/change'
+                  'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/sensitivity'
     params = {'h': 'h4',
               'restrict': False,
               'case': 6,
               'method': ['FAST'],
-              # 'method': ['Saltelli'],
               'samples': 5000,
               'param_names': ['AP', 'CH', 'ACH']
-              # 'param_names': ['AP']
-              # 'param_names': ['CH']
               }
 
     if not os.path.exists(project_dir):
@@ -281,7 +276,7 @@ def main():
         pickle_it(problem, project_dir, pickle_file)
         generate_samples(problem, params, project_dir, method)
 
-        # do_analysis(params, project_dir, pickle_file, method)
+        do_analysis(params, project_dir, pickle_file, method)
 
         # param_name = 'AP'
         # df_file = 'df_' + param_name + '_' + method + '.pickle'

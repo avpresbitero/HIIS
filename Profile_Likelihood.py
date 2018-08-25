@@ -19,6 +19,7 @@ def init_global():
     global RMSE_CH
     global RMSE_ACH
     global RMSE_AP
+    global RMSE_peaks
 
 
 def get_original_params():
@@ -97,7 +98,6 @@ def get_ap_data(files):
 
 
 def get_from_normal_dist(mu, max_boundary, counter):
-    # np.random.seed(int(counter))
     mu_norm = mu / float(max_boundary)
     s_norm = np.random.normal(mu_norm, mu_norm / 3., 1000)
     s = np.random.choice(s_norm)
@@ -107,7 +107,6 @@ def get_from_normal_dist(mu, max_boundary, counter):
 
 
 def get_value_uniform_dist(boundary, counter):
-    # np.random.seed(int(counter))
     uniform_list = np.linspace(boundary[0], boundary[1], 100)
     return np.random.choice(uniform_list)
 
@@ -184,50 +183,47 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
 
     df_ch_model = df_cyto_model['ch']
     df_ach_model = df_cyto_model['ach']
-    # df_ch_model = cyto.reverse_unit(df_cyto_model['ch'].tolist(), 'il6')
-    # df_ach_model = cyto.reverse_unit(df_cyto_model['ach'].tolist(), 'il10')
     df_ap_model = np.add(df_ap_model['ap_eblood'], df_ap_model['ap_sblood'])
     df_ap_model_converted = innate.reverse_AP(df_ap_model, 'endo', 'blood')
 
     df_ch_data_median = df_ch_data['median']
     df_ach_data_median = df_ach_data['median']
-    # df_ch_data_median = cyto.reverse_unit(df_ch_data['median'].tolist(), 'il6')
-    # df_ach_data_median = cyto.reverse_unit(df_ach_data['median'].tolist(), 'il10')
     df_ap_data_median = df_ap_data['median']
 
     # normalize
-    if max(df_ch_data_median) != 0: df_ch_data_median = df_ch_data_median/max(df_ch_data_median)
-    if max(df_ch_model) != 0: df_ch_model = df_ch_model/max(df_ch_model.dropna())
+    if max(df_ch_data_median) != 0:
+        df_ch_data_median = df_ch_data_median/max(df_ch_data_median)
+    if max(df_ch_model) != 0:
+        df_ch_model = df_ch_model/max(df_ch_model.dropna())
 
-    if max(df_ach_data_median) != 0: df_ach_data_median = df_ach_data_median/max(df_ach_data_median)
-    if max(df_ach_model) != 0: df_ach_model = df_ach_model/max(df_ach_model.dropna())
+    if max(df_ach_data_median) != 0:
+        df_ach_data_median = df_ach_data_median/max(df_ach_data_median)
+    if max(df_ach_model) != 0:
+        df_ach_model = df_ach_model/max(df_ach_model.dropna())
 
-    if max(df_ap_data_median) != 0: df_ap_data_median = df_ap_data_median/max(df_ap_data_median)
-    if max(df_ap_model_converted) != 0: df_ap_model_converted = df_ap_model_converted/max(df_ap_model_converted.dropna())
+    if max(df_ap_data_median) != 0:
+        df_ap_data_median = df_ap_data_median/max(df_ap_data_median)
+    if max(df_ap_model_converted) != 0:
+        df_ap_model_converted = df_ap_model_converted/max(df_ap_model_converted.dropna())
 
     try:
-        rmse_CH = ((mean_squared_error(y_true=df_ch_data_median,
-                                       y_pred=df_ch_model,
-                                       sample_weight=df_ch_data['weights']))
-                   / np.sum((df_ch_data_median - np.median(df_ch_data_median))**2))**2
-        rmse_ACH = ((mean_squared_error(y_true=df_ach_data_median,
+        rmse_CH = (np.sqrt(mean_squared_error(y_true=df_ch_data_median,
+                                              y_pred=df_ch_model,
+                                              sample_weight=df_ch_data['weights'])))
+        rmse_ACH = (np.sqrt(mean_squared_error(y_true=df_ach_data_median,
                                         y_pred=df_ach_model,
-                                        sample_weight=df_ach_data['weights']))
-                    / np.sum((df_ach_data_median - np.median(df_ach_data_median))**2))**2
-        rmse_AP = ((mean_squared_error(y_true=df_ap_data_median,
+                                        sample_weight=df_ach_data['weights'])))
+        rmse_AP = (np.sqrt(mean_squared_error(y_true=df_ap_data_median,
                                        y_pred=df_ap_model_converted,
-                                       sample_weight=df_ap_data['weights']))
-                   / np.sum((df_ap_data_median - np.median(df_ap_data_median))**2))**2
+                                       sample_weight=df_ap_data['weights'])))
 
     except ValueError as v_error:
         print(v_error)
+        RMSE_CH, RMSE_ACH, RMSE_AP = 1e10, 1e10, 1e10
+
         rmse_CH = RMSE_CH
         rmse_ACH = RMSE_ACH
         rmse_AP = RMSE_AP
-
-    # print('RMSE for CH : ', rmse_CH)
-    # print('RMSE for ACH : ', rmse_ACH)
-    # print('RMSE for AP : ', rmse_AP)
 
     sum_RMSE = np.sum([rmse_CH, rmse_ACH, rmse_AP])
     RMSE_CH = rmse_CH
@@ -237,8 +233,58 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
     return sum_RMSE
 
 
+def get_peaks(p, w0, header, time):
+    global RMSE_peaks
+
+    params = {}
+    params['h'] = 'h4'
+    params['restrict'] = False
+    params['case'] = 5
+    time, model = innate.solve(p, w0, time, params)
+    df_pred = pd.DataFrame(model)
+    keys = df_pred.columns.values
+    dictionary = dict(zip(keys, header))
+    df_pred = df_pred.rename(columns=dictionary)
+    placebo_n_a = df_pred['n_a']/max(df_pred['n_a'])
+    placebo_nd_n = df_pred['nd_n']/max(df_pred['nd_n'])
+    placebo_nd_a = df_pred['nd_a']/max(df_pred['nd_a'])
+
+    params = {}
+    params['h'] = 'h4'
+    params['restrict'] = False
+    params['case'] = 6
+    time, model = innate.solve(p, w0, time, params)
+    df_pred = pd.DataFrame(model)
+    keys = df_pred.columns.values
+    dictionary = dict(zip(keys, header))
+    df_pred = df_pred.rename(columns=dictionary)
+    supplemented_n_a = df_pred['n_a']/max(df_pred['n_a'])
+    supplemented_nd_n = df_pred['nd_n']/max(df_pred['nd_n'])
+    supplemented_nd_a = df_pred['nd_a']/max(df_pred['nd_a'])
+
+    if max(placebo_nd_n) > max(supplemented_nd_n):
+        nd_n_error = 0
+    if max(placebo_nd_n) <= max(supplemented_nd_n):
+        nd_n_error = abs(max(placebo_nd_n) - max(supplemented_nd_n))
+    if max(placebo_nd_a) < max(supplemented_nd_a):
+        nd_a_error = 0
+    if max(placebo_nd_a) >= max(supplemented_nd_a):
+        nd_a_error = abs(max(placebo_nd_a) - max(supplemented_nd_a))
+    if max(placebo_n_a) < max(supplemented_n_a):
+        n_a_error = abs(max(placebo_n_a) - max(supplemented_n_a))
+    if max(placebo_n_a) >= max(supplemented_n_a):
+        n_a_error = 0
+
+    try:
+        sum_error = np.sum([nd_n_error, nd_a_error, n_a_error])
+    except UnboundLocalError as u_error:
+        print(u_error)
+        sum_error = 1*10**10
+    RMSE_peaks = sum_error
+    return sum_error
+
+
 def get_objective_function(p0, params, param_profile, value, p0_to_pass):
-    # print("Getting the objective function...")
     p0_to_pass_copy = p0_to_pass.copy()
     p0_to_pass_copy[param_profile] = value
     files = get_files()
@@ -261,7 +307,10 @@ def get_objective_function(p0, params, param_profile, value, p0_to_pass):
                                                  blood_parameter='ap',
                                                  params=params)
 
-    rmse = get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model)
+    rmse_p = get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model)
+    rmse_n = get_peaks(p, w0, header, time=[par._stoptime * float(i) / (par._numpoints - 1)
+                                            for i in range(par._numpoints)])
+    rmse = rmse_p + rmse_n
 
     print('RMSE is {0}.'.format(rmse))
     return rmse
@@ -306,6 +355,7 @@ def scan_boundary(boundaries, params, destination_folder, param_profile):
     global RMSE_CH
     global RMSE_ACH
     global RMSE_AP
+    global RMSE_peaks
 
     optimized = OrderedDict()
     optimized['profile'] = []
@@ -336,25 +386,26 @@ def scan_boundary(boundaries, params, destination_folder, param_profile):
     optimized['r_Nhomeo'] = []
     optimized['Pmax_NR'] = []
 
-    # for key, boundary in tqdm(boundaries.items(), desc="boundary loop"):
-
-    interval = np.linspace(boundaries[param_profile][0], boundaries[param_profile][1], params['interval'])
+    interval = list(np.linspace(boundaries[param_profile][0], boundaries[param_profile][1], params['interval']))
+    original_params = get_original_params()
+    interval.append(original_params[param_profile])
     for trial in tqdm(range(params['trials']), desc="trial loop"):
         for value in tqdm(interval, desc="interval loop"):
-            p0_complete = get_initial_params(params, trial)  # sets new combinations of parameters
-            p0_to_pass = get_p0_to_pass(param_profile, p0_complete)
-            res = optimize_params(boundaries, params, p0_to_pass, param_profile, value)
-            res_dic = dict(zip(list(p0_to_pass.keys()), res))
-            optimized['profile'].append(param_profile)
-            optimized['value'].append(value)
-            optimized['cost'].append(RMSE_CH + RMSE_ACH + RMSE_AP)
-            optimized['trial'].append(trial)
-            optimized['method'].append(params['method'])
-            optimized[param_profile].append(value)
-            for key, res_value in res_dic.items():
-                optimized[key].append(res_value)
-            init_global()
-        pickle_it(pd.DataFrame(optimized), destination_folder, params, param_profile, trial)
+            if value != 0:
+                p0_complete = get_initial_params(params, trial)  # sets new combinations of parameters
+                p0_to_pass = get_p0_to_pass(param_profile, p0_complete)
+                res = optimize_params(boundaries, params, p0_to_pass, param_profile, value)
+                res_dic = dict(zip(list(p0_to_pass.keys()), res))
+                optimized['profile'].append(param_profile)
+                optimized['value'].append(value)
+                optimized['cost'].append(RMSE_CH + RMSE_ACH + RMSE_AP + RMSE_peaks)
+                optimized['trial'].append(trial)
+                optimized['method'].append(params['method'])
+                optimized[param_profile].append(value)
+                for key, res_value in res_dic.items():
+                    optimized[key].append(res_value)
+                init_global()
+            pickle_it(pd.DataFrame(optimized), destination_folder, params, param_profile, trial)
     return pd.DataFrame(optimized), trial
 
 
@@ -392,12 +443,11 @@ def run_parallel(methods, boundaries, destination_folder, params, params_to_prof
 
 
 if __name__ == '__main__':
-    # methods = ['L-BFGS-B', 'TNC', 'SLSQP']
     methods = ['TNC']
     boundaries = par.get_boundaries()
     params_to_profile = [key for key, boundary in boundaries.items()]
     destination_folder = 'C:/Users/Alva/Google Drive/Alva Modeling Immune System/Innate Immunity/Journal Papers/' \
-                         'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/Likelihood'
+                         'AP Simulator Model/Frontiers in Immunology/Special Issue/Revisions/results/Likelihood/peaks'
     data_dir = destination_folder
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
@@ -406,8 +456,8 @@ if __name__ == '__main__':
               'restrict': False,
               'case': 6,
               'distribution': 'normal',
-              'interval': 40,
+              'interval': 150,
               'treatment_type': 'biap',
-              'trials': 5,
+              'trials': 10,
               }
     run_parallel(methods, boundaries, destination_folder, params, params_to_profile)
