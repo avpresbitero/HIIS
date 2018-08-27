@@ -2,38 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd8a5913-abe5-40c4-9168-d4baa3335b1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Parameter_Optimization.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Parameter_Optimization_Sweep.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/ACH_Residual.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/AP_Residual.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/CH_Residual.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/APPIREDII/20130725appired-Eindhoven.txt" afterPath="$PROJECT_DIR$/data/APPIREDII/Hospital1.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/APPIREDII/zol.be.visits.txt" afterPath="$PROJECT_DIR$/data/APPIREDII/Hospital2.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Activated_Macrophages.png" afterPath="$PROJECT_DIR$/result/plots/Activated_Macrophages.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Activated_Neutrophils.png" afterPath="$PROJECT_DIR$/result/plots/Activated_Neutrophils.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Apoptotic_Neutrophils.png" afterPath="$PROJECT_DIR$/result/plots/Apoptotic_Neutrophils.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Endo_AP_Tissue.png" afterPath="$PROJECT_DIR$/result/plots/Endo_AP_Tissue.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/ITMS_Plasma.png" afterPath="$PROJECT_DIR$/result/plots/ITMS_Plasma.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/ITMS_Tissue.png" afterPath="$PROJECT_DIR$/result/plots/ITMS_Tissue.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Necrotic_Neutrophils.png" afterPath="$PROJECT_DIR$/result/plots/Necrotic_Neutrophils.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Placebo_IL10.png" afterPath="$PROJECT_DIR$/result/plots/Placebo_IL10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Placebo_IL6.png" afterPath="$PROJECT_DIR$/result/plots/Placebo_IL6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Resting_Macrophages.png" afterPath="$PROJECT_DIR$/result/plots/Resting_Macrophages.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Resting_Neutrophils.png" afterPath="$PROJECT_DIR$/result/plots/Resting_Neutrophils.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Supp_AP_Tissue.png" afterPath="$PROJECT_DIR$/result/plots/Supp_AP_Tissue.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/Supp_AP_blood.png" afterPath="$PROJECT_DIR$/result/plots/Supp_AP_blood.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/bIAP.png" afterPath="$PROJECT_DIR$/result/plots/bIAP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/bIAP_IL10.png" afterPath="$PROJECT_DIR$/result/plots/bIAP_IL10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/bIAP_IL6.png" afterPath="$PROJECT_DIR$/result/plots/bIAP_IL6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/result/plots/placebo.png" afterPath="$PROJECT_DIR$/result/plots/placebo.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Activated_Macrophages.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Activated_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Apoptotic_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Endo_AP_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/ITMS_Plasma.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/ITMS_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Necrotic_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Placebo_IL10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Placebo_IL6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Resting_Macrophages.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Resting_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Supp_AP_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Supp_AP_blood.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP_IL10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP_IL6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/placebo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Activated_Macrophages.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Activated_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Apoptotic_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Endo_AP_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/ITMS_Plasma.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/ITMS_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Necrotic_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Placebo_IL10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Placebo_IL6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Resting_Macrophages.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Resting_Neutrophils.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Supp_AP_Tissue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Supp_AP_blood.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP_IL10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP_IL6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/placebo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/plots.rar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APPIREDII_Blood_Params_Parser.py" afterPath="$PROJECT_DIR$/APPIREDII_Blood_Params_Parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diagnostic_Plots" afterPath="$PROJECT_DIR$/Diagnostic_Plots" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameter_Identifiability_Sweep.py" afterPath="$PROJECT_DIR$/Parameter_Identifiability_Sweep.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APSim_Model.py" afterPath="$PROJECT_DIR$/APSim_Model.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameters.py" afterPath="$PROJECT_DIR$/Parameters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Profile_Likelihood.py" afterPath="$PROJECT_DIR$/Profile_Likelihood.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sensitivity_Analysis_Global.py" afterPath="$PROJECT_DIR$/Sensitivity_Analysis_Global.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,20 +70,18 @@
       <file leaf-file-name="Profile_Likelihood_Parallel_Trials.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2398">
-              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-176">
+              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="APSim_Model.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="APSim_Model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APSim_Model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
+            <state relative-caret-position="491">
+              <caret line="874" column="38" lean-forward="true" selection-start-line="873" selection-start-column="0" selection-end-line="874" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -122,11 +127,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parameters.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parameters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="201" column="51" lean-forward="false" selection-start-line="201" selection-start-column="38" selection-end-line="201" selection-end-column="51" />
+            <state relative-caret-position="457">
+              <caret line="134" column="24" lean-forward="true" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -144,16 +159,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="APPIREDII_Cytokines_Parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/APPIREDII_Cytokines_Parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="236" column="25" lean-forward="false" selection-start-line="236" selection-start-column="25" selection-end-line="236" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -165,8 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_residual</find>
-      <find>original</find>
       <find>scan</find>
       <find>get_origina</find>
       <find>get_initi</find>
@@ -193,8 +196,10 @@
       <find>Pmin_APE</find>
       <find>label_dic</find>
       <find>beta</find>
-      <find>pickle</find>
       <find>min</find>
+      <find>bound</find>
+      <find>hold</find>
+      <find>pickle</find>
     </findStrings>
     <replaceStrings>
       <replace>p</replace>
@@ -210,9 +215,7 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Parameter_Sweep.py" />
         <option value="$PROJECT_DIR$/APPIREDII_Cytokines_Parser.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Diagnostic_Plots" />
-        <option value="$PROJECT_DIR$/Parameters.py" />
         <option value="$PROJECT_DIR$/APPIREDII_Blood_Params_Parser.py" />
         <option value="$PROJECT_DIR$/Parameter_Optimization.py" />
         <option value="$PROJECT_DIR$/Sensitivity_Analysis_Global.py" />
@@ -220,15 +223,17 @@
         <option value="$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py" />
         <option value="$PROJECT_DIR$/Parameter_Identifiability_Sweep.py" />
         <option value="$PROJECT_DIR$/Parameter_Optimization_Sweep.py" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/APSim_Model.py" />
+        <option value="$PROJECT_DIR$/Parameters.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="776" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -284,6 +289,10 @@
               <option name="myItemId" value="result" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -328,7 +337,7 @@
       <recent name="C:\Users\Alva\PycharmProjects\HIIS" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Sensitivity_Analysis_Global">
+  <component name="RunManager" selected="Python.APSim_Model">
     <configuration default="false" name="Sensitivity_Analysis_Global" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -342,23 +351,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="HIIS" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Sensitivity_Analysis_Global.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Diagnostic_Plots" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HIIS" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Diagnostic_Plots" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -410,6 +402,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="HIIS" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parameter_Identifiability_Sweep.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="APSim_Model" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="HIIS" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/APSim_Model.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -550,18 +559,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Diagnostic_Plots" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
+      <item index="4" class="java.lang.String" itemvalue="Python.APSim_Model" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Diagnostic_Plots" />
+        <item index="0" class="java.lang.String" itemvalue="Python.APSim_Model" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
       </list>
     </recent_temporary>
   </component>
@@ -588,16 +597,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23608904" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1564805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3437014" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23943663" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -908,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/643474478/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -972,14 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="201" column="51" lean-forward="false" selection-start-line="201" selection-start-column="38" selection-end-line="201" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parameter_Optimization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1000,16 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2200">
           <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2398">
-          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1042,10 +1025,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/APSim_Model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
+        <state relative-caret-position="491">
+          <caret line="874" column="38" lean-forward="true" selection-start-line="873" selection-start-column="0" selection-end-line="874" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parameters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="134" column="24" lean-forward="true" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
           <folding />
         </state>
       </provider>
