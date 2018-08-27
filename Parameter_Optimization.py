@@ -213,7 +213,13 @@ def get_peaks(p, w0, header, time):
         n_a_error = abs(max(placebo_n_a) - max(supplemented_n_a))
     if max(placebo_n_a) >= max(supplemented_n_a):
         n_a_error = 0
-    sum_error = np.sum([nd_n_error, nd_a_error, n_a_error])
+
+    try:
+        sum_error = np.sum([nd_n_error, nd_a_error, n_a_error])
+    except UnboundLocalError as u_error:
+        print(u_error)
+        sum_error = 1*10**10
+
     RMSE_peaks = sum_error
     return sum_error
 
@@ -253,19 +259,6 @@ def get_rmse(params, df_cyto_data, df_ap_data, df_cyto_model, df_ap_model):
     if max(df_ap_model_converted) != 0: df_ap_model_converted = df_ap_model_converted/max(df_ap_model_converted.dropna())
 
     try:
-        # rmse_CH = ((mean_squared_error(y_true=df_ch_data_median,
-        #                                y_pred=df_ch_model,
-        #                                sample_weight=df_ch_data['weights']))
-        #            / np.sum((df_ch_data_median - np.median(df_ch_data_median))**2))**2
-        # rmse_ACH = ((mean_squared_error(y_true=df_ach_data_median,
-        #                                 y_pred=df_ach_model,
-        #                                 sample_weight=df_ach_data['weights']))
-        #             / np.sum((df_ach_data_median - np.median(df_ach_data_median))**2))**2
-        # rmse_AP = ((mean_squared_error(y_true=df_ap_data_median,
-        #                                y_pred=df_ap_model_converted,
-        #                                sample_weight=df_ap_data['weights']))
-        #            / np.sum((df_ap_data_median - np.median(df_ap_data_median))**2))**2
-
         rmse_CH = (np.sqrt(mean_squared_error(y_true=df_ch_data_median,
                                               y_pred=df_ch_model,
                                               sample_weight=df_ch_data['weights'])))
@@ -424,7 +417,7 @@ def run_parallel(methods, boundaries, destination_folder, params, params_to_prof
     # NOT parallel
     # for param_profile in params_to_profile:
     #     print(param_profile)
-    #     run_experiment(methods, boundaries, destination_folder, params, param_profile)
+    #     run_experiment(methods, boundaries, destination_folder, params, trial)
 
 
 if __name__ == '__main__':
