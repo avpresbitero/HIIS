@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd8a5913-abe5-40c4-9168-d4baa3335b1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Activated_Macrophages.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Activated_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Apoptotic_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Endo_AP_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/ITMS_Plasma.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/ITMS_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Necrotic_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Placebo_IL10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Placebo_IL6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Resting_Macrophages.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Resting_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Supp_AP_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/Supp_AP_blood.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP_IL10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/bIAP_IL6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/1/placebo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Activated_Macrophages.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Activated_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Apoptotic_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Endo_AP_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/ITMS_Plasma.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/ITMS_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Necrotic_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Placebo_IL10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Placebo_IL6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Resting_Macrophages.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Resting_Neutrophils.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Supp_AP_Tissue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/Supp_AP_blood.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP_IL10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/bIAP_IL6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/2/placebo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/result/plots/plots.rar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/APSim_Model.py" afterPath="$PROJECT_DIR$/APSim_Model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameters.py" afterPath="$PROJECT_DIR$/Parameters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameter_Optimization.py" afterPath="$PROJECT_DIR$/Parameter_Optimization.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,8 +20,8 @@
       <file leaf-file-name="Profile_Likelihood.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Profile_Likelihood.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2200">
-              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="513">
+              <caret line="462" column="45" lean-forward="true" selection-start-line="462" selection-start-column="45" selection-end-line="462" selection-end-column="45" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -87,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parameter_Optimization.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parameter_Optimization.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parameter_Optimization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="434" column="42" lean-forward="false" selection-start-line="434" selection-start-column="42" selection-end-line="434" selection-end-column="42" />
+            <state relative-caret-position="425">
+              <caret line="442" column="18" lean-forward="false" selection-start-line="442" selection-start-column="18" selection-end-line="442" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -120,18 +82,18 @@
       <file leaf-file-name="Parameter_Optimization_Sweep.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parameter_Optimization_Sweep.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="396">
+              <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parameters.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parameters.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="134" column="24" lean-forward="true" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
+            <state relative-caret-position="303">
+              <caret line="127" column="38" lean-forward="true" selection-start-line="127" selection-start-column="38" selection-end-line="127" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -170,7 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scan</find>
       <find>get_origina</find>
       <find>get_initi</find>
       <find>marker</find>
@@ -195,11 +156,12 @@
       <find>beta_CHNA</find>
       <find>Pmin_APE</find>
       <find>label_dic</find>
-      <find>beta</find>
       <find>min</find>
       <find>bound</find>
       <find>hold</find>
       <find>pickle</find>
+      <find>beta</find>
+      <find>boundar</find>
     </findStrings>
     <replaceStrings>
       <replace>p</replace>
@@ -217,7 +179,6 @@
         <option value="$PROJECT_DIR$/APPIREDII_Cytokines_Parser.py" />
         <option value="$PROJECT_DIR$/Diagnostic_Plots" />
         <option value="$PROJECT_DIR$/APPIREDII_Blood_Params_Parser.py" />
-        <option value="$PROJECT_DIR$/Parameter_Optimization.py" />
         <option value="$PROJECT_DIR$/Sensitivity_Analysis_Global.py" />
         <option value="$PROJECT_DIR$/Profile_Likelihood.py" />
         <option value="$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py" />
@@ -226,6 +187,7 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/APSim_Model.py" />
         <option value="$PROJECT_DIR$/Parameters.py" />
+        <option value="$PROJECT_DIR$/Parameter_Optimization.py" />
       </list>
     </option>
   </component>
@@ -337,7 +299,7 @@
       <recent name="C:\Users\Alva\PycharmProjects\HIIS" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.APSim_Model">
+  <component name="RunManager" selected="Python.Parameter_Optimization">
     <configuration default="false" name="Sensitivity_Analysis_Global" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -372,23 +334,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Profile_Likelihood_Parallel_Trials" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HIIS" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Profile_Likelihood_Parallel_Trials.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="Parameter_Identifiability_Sweep" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -419,6 +364,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="HIIS" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/APSim_Model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Parameter_Optimization" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="HIIS" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parameter_Optimization.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -560,17 +522,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
       <item index="1" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
-      <item index="4" class="java.lang.String" itemvalue="Python.APSim_Model" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
+      <item index="3" class="java.lang.String" itemvalue="Python.APSim_Model" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Parameter_Optimization" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.APSim_Model" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Profile_Likelihood_Parallel_Trials" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Parameter_Optimization" />
+        <item index="1" class="java.lang.String" itemvalue="Python.APSim_Model" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Sensitivity_Analysis_Global" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Parameter_Identifiability_Sweep" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Profile_Likelihood" />
       </list>
     </recent_temporary>
   </component>
@@ -973,14 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parameter_Optimization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="434" column="42" lean-forward="false" selection-start-line="434" selection-start-column="42" selection-end-line="434" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sensitivity_Analysis_Global.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4290">
@@ -989,28 +943,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Profile_Likelihood.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2200">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parameter_Identifiability_Sweep.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Parameter_Optimization_Sweep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1049,10 +985,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Profile_Likelihood.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="462" column="45" lean-forward="true" selection-start-line="462" selection-start-column="45" selection-end-line="462" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Parameters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="134" column="24" lean-forward="true" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
+        <state relative-caret-position="303">
+          <caret line="127" column="38" lean-forward="true" selection-start-line="127" selection-start-column="38" selection-end-line="127" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parameter_Optimization_Sweep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parameter_Optimization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="442" column="18" lean-forward="false" selection-start-line="442" selection-start-column="18" selection-end-line="442" selection-end-column="18" />
           <folding />
         </state>
       </provider>

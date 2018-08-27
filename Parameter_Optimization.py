@@ -442,6 +442,6 @@ if __name__ == '__main__':
               'case': 6,
               'distribution': 'normal',
               'treatment_type': 'biap',
-              'trials': 1,
+              'trials': 10,
               }
     run_parallel(methods, boundaries, destination_folder, params, params_to_profile)
